@@ -49,7 +49,8 @@ export default function Button({
     tertiary_danger_ghost: "bg-transparent text-accent hover:text-accent-tint",
 
     // 4. Text
-    text: "bg-transparent text-description-light hover:scale-105",
+    text: "bg-transparent text-description-light",
+    text_danger: "bg-transparent text-accent",
 
     // 5. Link
     link: "bg-transparent p-0 text-secondary hover:text-secondary-tint underline-offset-4 hover:underline active:scale-100",
