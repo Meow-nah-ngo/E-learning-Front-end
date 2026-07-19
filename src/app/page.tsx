@@ -1,58 +1,78 @@
+import Button from '@/components/Button';
+
 export default function Page() {
   return (
-    <main className="min-h-screen bg-linear-to-b from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 flex flex-col items-center justify-center p-6 md:p-24 selection:bg-indigo-500 selection:text-white">
-      {/* Container */}
-      <div className="max-w-4xl w-full text-center space-y-8 bg-white/50 dark:bg-slate-900/50 backdrop-blur-md p-8 md:p-16 rounded-3xl border border-slate-200/50 dark:border-slate-800/50 shadow-2xl transition-all duration-300 hover:shadow-indigo-500/10">
+    <main className="min-h-screen bg-light-2 flex flex-col items-center justify-center p-gutter-xs md:p-gutter-sm lg:p-gutter-lg">
+      <div className="max-w-4xl w-full space-y-xl bg-white p-2xl rounded-3xl border border-neutral/50 shadow-xs">
         
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-950/50 border border-indigo-100 dark:border-indigo-900/50 text-indigo-600 dark:text-indigo-400 text-sm font-semibold tracking-wide">
-          <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
-          Tailwind CSS v4 Active
+        {/* หัวข้อโปรเจกต์ */}
+        <div className="space-y-xs">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wide">
+            <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            Ant Design Token Mapping
+          </div>
+          <h1 className="text-4xl font-bold text-primary">Ant Design Button Showcase</h1>
+          <p className="text-md text-description-light">
+            ปุ่มคอมโพเนนต์ที่คุณปรับปรุงและเรียบเรียงใหม่ แสดงคุณสมบัติที่อัปเดตล่าสุด
+          </p>
         </div>
 
-        {/* Heading */}
-        <h1 className="text-4xl md:text-6xl font-black tracking-tight text-slate-900 dark:text-white">
-          ยินดีต้อนรับสู่โปรเจกต์{" "}
-          <span className="bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-            E-Learning
-          </span>
-        </h1>
-
-        {/* Subtitle */}
-        <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
-          เริ่มต้นเขียนโปรเจกต์ Next.js ด้วย TypeScript และ Tailwind CSS v4 ได้ทันที โครงสร้างโฟลเดอร์ถูกจัดระเบียบใหม่เรียบร้อยแล้ว
-        </p>
-
-        {/* Features / Steps */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left pt-8">
-          <div className="p-6 rounded-2xl bg-white dark:bg-slate-950 border border-slate-200/50 dark:border-slate-800/50 shadow-xs space-y-2">
-            <div className="text-2xl">📁</div>
-            <h3 className="font-bold text-slate-800 dark:text-slate-200">📂 Src Folder</h3>
-            <p className="text-sm text-slate-500 dark:text-slate-400">โฟลเดอร์สำหรับเก็บโค้ดหลัก ถูกย้ายมาอยู่ที่ <code>src/app</code> เรียบร้อย</p>
-          </div>
-          <div className="p-6 rounded-2xl bg-white dark:bg-slate-950 border border-slate-200/50 dark:border-slate-800/50 shadow-xs space-y-2">
-            <div className="text-2xl">🧱</div>
-            <h3 className="font-bold text-slate-800 dark:text-slate-200">🧩 Components</h3>
-            <p className="text-sm text-slate-500 dark:text-slate-400">สร้างโฟลเดอร์ <code>src/components</code> พร้อมให้สร้างคอมโพเนนต์ใหม่</p>
-          </div>
-          <div className="p-6 rounded-2xl bg-white dark:bg-slate-950 border border-slate-200/50 dark:border-slate-800/50 shadow-xs space-y-2">
-            <div className="text-2xl">✨</div>
-            <h3 className="font-bold text-slate-800 dark:text-slate-200">🎨 Tailwind v4</h3>
-            <p className="text-sm text-slate-500 dark:text-slate-400">ทำงานร่วมกับ PostCSS พร้อมเอฟเฟกต์ไล่สีและ Glassmorphism ในตัว</p>
+        {/* หมวดหมู่ 1: Type */}
+        <div className="space-y-sm">
+          <h2 className="text-xl font-bold border-b border-neutral pb-xxs text-primary">1. Type (รูปแบบปุ่ม)</h2>
+          <div className="flex flex-wrap gap-md items-center">
+            <Button type="primary" title="Primary" />
+            <Button type="secondary" title="Secondary" />
+            <Button type="tertiary" title="Tertiary" />
+            <Button type="text" title="Text Button" />
+            <Button type="link" title="Link Button" />
+            <Button type="disabled" title="Disabled State" />
           </div>
         </div>
 
-        {/* Call to action */}
-        <div className="pt-6">
-          <a
-            href="https://tailwindcss.com/docs/v4-beta"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white bg-indigo-600 hover:bg-indigo-700 active:scale-95 transition-all duration-200 rounded-2xl shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/35"
-          >
-            ศึกษา Tailwind v4 Docs →
-          </a>
+        {/* หมวดหมู่ 2: Shape */}
+        <div className="space-y-sm">
+          <h2 className="text-xl font-bold border-b border-neutral pb-xxs text-primary">2. Shape (รูปทรง)</h2>
+          <div className="flex flex-wrap gap-md items-center">
+            <Button type="primary" shape="standard" title="Standard Button" />
+            <Button type="primary" shape="circle" title="A" />
+            <Button type="secondary" shape="circle" icon={<span>🔍</span>} />
+          </div>
         </div>
+
+        {/* หมวดหมู่ 3: Size */}
+        <div className="space-y-sm">
+          <h2 className="text-xl font-bold border-b border-neutral pb-xxs text-primary">3. Size (ขนาดปุ่ม)</h2>
+          <div className="flex flex-wrap gap-md items-center">
+            <Button type="primary" size="small" title="Small Button" />
+            <Button type="primary" size="medium" title="Medium Button" />
+            <Button type="primary" size="large" title="Large Button" />
+          </div>
+        </div>
+
+        {/* หมวดหมู่ 4: Danger & State */}
+        <div className="space-y-sm">
+          <h2 className="text-xl font-bold border-b border-neutral pb-xxs text-primary">4. Danger & State (สถานะและอันตราย)</h2>
+          <div className="flex flex-wrap gap-md items-center">
+            <Button type="primary" danger title="Danger Primary" />
+            <Button type="secondary" danger title="Danger Secondary" />
+            <Button type="tertiary" danger title="Danger Tertiary" />
+            <Button type="primary" loading title="Loading Button" />
+            <Button type="primary" disabled title="Disabled Prop" />
+          </div>
+        </div>
+
+        {/* หมวดหมู่ 5: Ghost */}
+        <div className="space-y-sm">
+          <h2 className="text-xl font-bold border-b border-neutral pb-xxs text-primary">5. Ghost (ปุ่มโปร่งแสงบนพื้นหลังสีเข้ม)</h2>
+          <div className="p-md rounded-2xl bg-secondary/95 flex flex-wrap gap-md items-center">
+            <Button type="primary" ghost title="Ghost Primary" />
+            <Button type="secondary" ghost title="Ghost Secondary" />
+            <Button type="tertiary" ghost title="Ghost Tertiary" />
+            <Button type="disabled" ghost title="Ghost Disabled" />
+          </div>
+        </div>
+
       </div>
     </main>
   );
