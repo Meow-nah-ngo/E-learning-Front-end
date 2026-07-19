@@ -1,26 +1,145 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background-light-1: #FFFFFF;
+  --background-light-2: #F2F5FA;
+  --background-dark-1: #053C5E;
+  --background-dark-2: #A4161A;
+  --background-alt: #F8FAFC;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-light-1: var(--background-light-1);
+  --color-light-2: var(--background-light-2);
+  --color-dark-1: var(--background-dark-1);
+  --color-dark-2: var(--background-dark-2);
+  --color-alt: var(--background-alt);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  --color-primary: #A4161A;
+  --color-primary-tint: #EC2329;
+  --color-secondary: #053C5E;
+  --color-secondary-tint: #0A5B8F;
+  --color-accent: #EC2329;
+  --color-accent-tint: #A4161A;
+
+  --color-title-light: #053C5E;
+  --color-description-light: #475569;
+  --color-title-dark: #FFFFFF;
+  --color-description-dark: #E2E8F0;
+  --color-text-alt: #FFFFFF;
+
+  --color-neutral: #C0C0C0;
+  --color-spark: #EC2329 opacity(10%);
+  --color-glow: #053C5E opacity(15%);
+
+  --spacing-none: 0px;
+  --spacing-xxs: 2px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 15px;
+  --spacing-xl: 16px;
+  --spacing-2xl: 20px;
+  --spacing-3xl: 24px;
+  --spacing-4xl: 32px;
+  --spacing-5xl: 40px;
+  --spacing-6xl: 48px;
+  --spacing-7xl: 64px;
+  --spacing-8xl: 96px;
+  --spacing-9xl: 100px;
+  --spacing-10xl: 145px;
+  --spacing-11xl: 180px;
+  --spacing-12xl: 200px;
+
+  --radius-none: 0px;
+  --radius-xxs: 2px;
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-3xl: 20px;
+  --radius-4xl: 24px;
+  --radius-pill: 80px;
+  --radius-full: 9999px;
+
+  --font-sans: 'Kanit', sans-serif;
+
+  --text-xs: 12px;
+  --text-xs--line-height: 18px;
+
+  --text-sm: 14px;
+  --text-sm--line-height: 20px;
+
+  --text-md: 16px;
+  --text-md--line-height: 24px;
+
+  --text-lg: 18px;
+  --text-lg--line-height: 28px;
+
+  --text-xl: 20px;
+  --text-xl--line-height: 30px;
+
+  --text-2xl: 24px;
+  --text-2xl--line-height: 32px;
+
+  --text-3xl: 30px;
+  --text-3xl--line-height: 38px;
+
+  --text-4xl: 36px;
+  --text-4xl--line-height: 44px;
+
+  --text-5xl: 48px;
+  --text-5xl--line-height: 60px;
+
+  --text-6xl: 60px;
+  --text-6xl--line-height: 72px;
+
+  --text-7xl: 72px;
+  --text-7xl--line-height: 90px;
+
+  /* ปรับแต่งจุดแบ่งหน้าจอ (Breakpoints) ให้ตรงกับ Figma */
+  --breakpoint-xs: 30rem;    /* 480px (Small phone) */
+  --breakpoint-sm: 40rem;    /* 640px (Mobile) */
+  --breakpoint-md: 48rem;    /* 768px (Tablet) */
+  --breakpoint-lg: 64rem;    /* 1024px (Laptop) */
+  --breakpoint-xl: 80rem;    /* 1280px (Desktop) */
+  --breakpoint-2xl: 90rem;   /* 1440px (Very large desktop) */
+  --breakpoint-3xl: 120rem;  /* 1920px (Extra large desktop) */
+
+  /* ปรับแต่งขนาดสูงสุดของ Container (Max-Width) */
+  --max-width-container-xs: 320px;
+  --max-width-container-sm: 640px;
+  --max-width-container-md: 768px;
+  --max-width-container-lg: 1024px;
+  --max-width-container-xl: 1280px;
+  --max-width-container-2xl: 1440px;
+
+  /* ขนาดระยะขอบ (Gutters) สำหรับ Container */
+  --spacing-gutter-xs: 16px;
+  --spacing-gutter-sm: 32px;
+  --spacing-gutter-lg: 128px;
+
+  /* ปรับแต่งความโปร่งแสงของสี (Opacity Overlays) */
+  --color-light-op-1: rgba(255, 255, 255, 0.05);
+  --color-light-op-2: rgba(255, 255, 255, 0.10);
+  --color-light-op-3: rgba(255, 255, 255, 0.15);
+  --color-light-op-4: rgba(255, 255, 255, 0.20);
+  --color-light-op-5: rgba(255, 255, 255, 0.25);
+
+  --color-dark-op-1: rgba(0, 0, 0, 0.05);
+  --color-dark-op-2: rgba(0, 0, 0, 0.10);
+  --color-dark-op-3: rgba(0, 0, 0, 0.15);
+  --color-dark-op-4: rgba(0, 0, 0, 0.20);
+  --color-dark-op-5: rgba(0, 0, 0, 0.25);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--background-light-2);
+  color: var(--color-title-light);
+  font-family: 'Kanit', sans-serif;
 }
