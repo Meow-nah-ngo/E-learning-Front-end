@@ -1,4 +1,5 @@
 import Button from '@/components/Button';
+import CourseCard from '@/components/CourseCard';
 
 export default function Page() {
   return (
@@ -70,6 +71,33 @@ export default function Page() {
             <Button type="secondary" ghost title="Ghost Secondary" />
             <Button type="tertiary" ghost title="Ghost Tertiary" />
             <Button type="disabled" ghost title="Ghost Disabled" />
+          </div>
+        </div>
+
+        {/* หมวดหมู่ 6: Course Card Showcase */}
+        <div className="space-y-sm">
+          <h2 className="text-xl font-bold border-b border-neutral pb-xxs text-primary">6. Course Card (การ์ดแสดงคอร์สเรียน)</h2>
+          <div className="flex flex-wrap gap-md justify-center p-md bg-light-2 rounded-2xl">
+            <CourseCard
+              imageUrl="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=600&auto=format&fit=crop"
+              title="Innovative Strategies in Tech Development"
+              subject="คณิตศาสตร์ 10123"
+              level="ม.1"
+              teacher="ครูพิมพ์ชนก"
+              date="23 กันยายน 2569"
+              status="คอร์สเต็ม"
+              isFull={true}
+            />
+            <CourseCard
+              imageUrl="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600&auto=format&fit=crop"
+              title="Introduction to React & Next.js Frameworks"
+              subject="เทคโนโลยี 2024"
+              level="ม.ปลาย"
+              teacher="ครูสมชาย"
+              date="1 ตุลาคม 2569"
+              status="เปิดรับสมัคร"
+              isFull={false}
+            />
           </div>
         </div>
 
