@@ -57,6 +57,7 @@ export default function Button({
 
     // 6. Disabled
     disabled: "bg-disabled border border-neutral text-dis cursor-not-allowed",
+    disabled_ghost: "bg-transparent border border-neutral text-dis cursor-not-allowed",
   };
 
   return (
