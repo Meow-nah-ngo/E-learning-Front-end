@@ -1,13 +1,84 @@
 "use client";
 
+import React from 'react';
 import Button from '@/components/Button';
 import CourseCard from '@/components/CourseCard';
 import Badge from '@/components/Badge';
 
+const defaultSubjects = [
+  "Physics",
+  "Chemistry",
+  "Biology",
+  "Computer Science",
+  "Statistics",
+  "Engineering",
+  "Astronomy",
+  "Environmental Science",
+  "Geology"
+];
+
+const defaultCourses = [
+  {
+    id: "1",
+    imageUrl: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=600&auto=format&fit=crop",
+    title: "Creative Writing",
+    code: "SW20246",
+    benefit: "Certificate",
+    benefitType: "certificate" as const,
+    rating: 4.8,
+    reviewCount: 32,
+    date: "17 สิงหาคม 2569",
+    seatsOrStatus: "คอร์สเต็ม",
+    isFull: true,
+    subject: "Computer Science"
+  },
+  {
+    id: "2",
+    imageUrl: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600&auto=format&fit=crop",
+    title: "Digital Marketing",
+    code: "DM30112",
+    benefit: "Diploma",
+    benefitType: "diploma" as const,
+    rating: 4.6,
+    reviewCount: 58,
+    date: "12 กันยายน 2569",
+    seatsOrStatus: "2,500 ที่นั่ง",
+    isFull: false,
+    subject: "Computer Science"
+  }
+];
+
 export default function Page() {
+  const [subjects, setSubjects] = React.useState<string[]>(defaultSubjects);
+  const [selectedSubject, setSelectedSubject] = React.useState<string | null>(null);
+  const [courses, setCourses] = React.useState<any[]>(defaultCourses);
+
+  React.useEffect(() => {
+    fetch("/api/subjects")
+      .then((res) => {
+        if (!res.ok) throw new Error("API error");
+        return res.json();
+      })
+      .then((data) => setSubjects(data))
+      .catch((err) => console.log("Failed to fetch subjects, using defaults", err));
+  }, []);
+
+  React.useEffect(() => {
+    const url = selectedSubject
+      ? `/api/courses?subject=${encodeURIComponent(selectedSubject)}`
+      : "/api/courses";
+    fetch(url)
+      .then((res) => {
+        if (!res.ok) throw new Error("API error");
+        return res.json();
+      })
+      .then((data) => setCourses(data))
+      .catch((err) => console.log("Failed to fetch courses, using defaults", err));
+  }, [selectedSubject]);
+
   return (
-    <main className="min-h-screen bg-light-2 flex flex-col items-center justify-center p-gutter-xs md:p-gutter-sm lg:p-gutter-lg">
-      <div className="max-w-4xl w-full space-y-xl bg-white p-2xl rounded-3xl border border-neutral/50 shadow-xs">
+    <main className="min-h-screen bg-light-2 py-[48px] px-[16px] md:px-[32px]">
+      <div className="max-w-[896px] w-full mx-auto space-y-[32px] bg-white p-[24px] md:p-[48px] rounded-3xl border border-neutral/50 shadow-xs">
         
         {/* หัวข้อโปรเจกต์ */}
         <div className="space-y-xs">
@@ -161,28 +232,104 @@ export default function Page() {
           </div>
         </div>
 
+        {/* หมวดหมู่ 6.5: Subject Filter Interactive Demo */}
+        <div className="space-y-sm">
+          <h2 className="text-xl font-bold border-b border-neutral pb-xxs text-primary">6.5 Subject Filters from API (ระบบตัวกรองวิชาที่เชื่อมต่อ API)</h2>
+          <div className="p-md bg-light-2 rounded-2xl space-y-md">
+            
+            {/* แถบตัวกรองรายวิชา (ดึงมาจาก API หลังบ้าน) */}
+            <div className="flex flex-wrap gap-xs justify-center">
+              {/* ปุ่ม Clear Filter */}
+              <Badge
+                variant={selectedSubject === null ? "fill" : "outline"}
+                color="primary"
+                shape="pill"
+                size="medium"
+                className="cursor-pointer font-medium hover:bg-primary hover:text-white transition-all duration-200"
+                onClick={() => setSelectedSubject(null)}
+              >
+                All Subjects
+              </Badge>
+
+              {subjects.map((subj) => {
+                const isSelected = selectedSubject === subj;
+                return (
+                  <Badge
+                    key={subj}
+                    variant={isSelected ? "fill" : "outline"}
+                    color="primary"
+                    shape="pill"
+                    size="medium"
+                    className="cursor-pointer font-medium hover:bg-primary hover:text-white transition-all duration-200"
+                    onClick={() => setSelectedSubject(isSelected ? null : subj)}
+                  >
+                    {subj}
+                  </Badge>
+                );
+              })}
+            </div>
+
+            {/* ส่วนแสดงผลข้อมูลการ์ดที่ถูกคัดกรอง */}
+            <div className="space-y-xs pt-sm border-t border-neutral/30">
+              <div className="flex justify-between items-center text-xs text-description-light mb-sm">
+                <span>แสดงผลวิชา: <span className="font-semibold text-secondary">{selectedSubject || "ทั้งหมด"}</span></span>
+                <span>พบคอร์สทั้งหมด: <span className="font-semibold text-secondary">{courses.length} คอร์ส</span></span>
+              </div>
+
+              {courses.length === 0 ? (
+                <div className="text-center py-lg text-xs text-description-light/60">
+                  📭 ไม่พบคอร์สเรียนในหมวดหมู่นี้
+                </div>
+              ) : (
+                <div className="flex flex-wrap gap-md justify-center pt-xs">
+                  {courses.map((course) => (
+                    <CourseCard
+                      key={course.id}
+                      imageUrl={course.imageUrl}
+                      title={course.title}
+                      code={course.code}
+                      benefit={course.benefit}
+                      benefitType={course.benefitType}
+                      rating={course.rating}
+                      reviewCount={course.reviewCount}
+                      date={course.date}
+                      seatsOrStatus={course.seatsOrStatus}
+                      isFull={course.isFull}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+
+          </div>
+        </div>
+
         {/* หมวดหมู่ 7: Course Card Showcase */}
         <div className="space-y-sm">
           <h2 className="text-xl font-bold border-b border-neutral pb-xxs text-primary">7. Course Card (การ์ดแสดงคอร์สเรียน)</h2>
           <div className="flex flex-wrap gap-md justify-center p-md bg-light-2 rounded-2xl">
             <CourseCard
               imageUrl="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=600&auto=format&fit=crop"
-              title="Innovative Strategies in Tech Development"
-              subject="คณิตศาสตร์ 10123"
-              level="ม.1"
-              teacher="ครูพิมพ์ชนก"
-              date="23 กันยายน 2569"
-              status="คอร์สเต็ม"
+              title="Creative Writing"
+              code="SW20246"
+              benefit="Certificate"
+              benefitType="certificate"
+              rating={4.8}
+              reviewCount={32}
+              date="17 สิงหาคม 2569"
+              seatsOrStatus="คอร์สเต็ม"
               isFull={true}
             />
             <CourseCard
               imageUrl="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600&auto=format&fit=crop"
-              title="Introduction to React & Next.js Frameworks"
-              subject="เทคโนโลยี 2024"
-              level="ม.ปลาย"
-              teacher="ครูสมชาย"
-              date="1 ตุลาคม 2569"
-              status="เปิดรับสมัคร"
+              title="Digital Marketing"
+              code="DM30112"
+              benefit="Diploma"
+              benefitType="diploma"
+              rating={4.6}
+              reviewCount={58}
+              date="12 กันยายน 2569"
+              seatsOrStatus="2,500 ที่นั่ง"
               isFull={false}
             />
           </div>

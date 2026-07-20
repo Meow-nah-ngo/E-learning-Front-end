@@ -3,7 +3,7 @@ import React from "react";
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   children?: React.ReactNode;
   variant?: "fill" | "outline" | "soft";
-  color?: "primary" | "success" | "benefit" | "warning" | "error" | "info";
+  color?: "primary" | "success" | "benefit" | "warning" | "error" | "info" | "neutral";
   shape?: "pill" | "square";
   size?: "small" | "medium" | "large";
   iconPosition?: "left" | "right";
@@ -68,6 +68,11 @@ export default function Badge({
       fill: "bg-info text-white border border-transparent",
       outline: "bg-transparent text-info border border-info",
       soft: "bg-info/10 text-info border border-transparent",
+    },
+    neutral: {
+      fill: "bg-neutral text-title-light border border-transparent",
+      outline: "bg-transparent text-description-light border border-neutral",
+      soft: "bg-neutral/10 text-description-light border border-transparent",
     },
   };
 
