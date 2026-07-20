@@ -42,10 +42,10 @@ export default function CourseCard({
         </h3>
         
         <div className="flex items-center gap-xs">
-          <Badge variant="primary" size="medium">
+          <Badge color="primary" size="medium">
             {subject}
           </Badge>
-          <Badge variant="primary" size="medium">
+          <Badge color="primary" size="medium">
             {level}
           </Badge>
           <span className="ml-auto text-xs text-description-light font-medium">

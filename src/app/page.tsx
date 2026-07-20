@@ -1,5 +1,8 @@
+"use client";
+
 import Button from '@/components/Button';
 import CourseCard from '@/components/CourseCard';
+import Badge from '@/components/Badge';
 
 export default function Page() {
   return (
@@ -74,9 +77,93 @@ export default function Page() {
           </div>
         </div>
 
-        {/* หมวดหมู่ 6: Course Card Showcase */}
+        {/* หมวดหมู่ 6: Badge Showcase */}
         <div className="space-y-sm">
-          <h2 className="text-xl font-bold border-b border-neutral pb-xxs text-primary">6. Course Card (การ์ดแสดงคอร์สเรียน)</h2>
+          <h2 className="text-xl font-bold border-b border-neutral pb-xxs text-primary">6. Badge (ป้ายกำกับและแท็ก)</h2>
+          
+          <div className="space-y-md p-md bg-light-2 rounded-2xl">
+            {/* Variants & Colors */}
+            <div className="space-y-xs">
+              <h3 className="text-sm font-semibold text-secondary">6.1 Variants (รูปแบบ) & Colors (สี)</h3>
+              
+              <div className="space-y-xs">
+                <div className="flex flex-wrap gap-xs items-center">
+                  <span className="text-xs font-medium w-16 text-description-light">Fill:</span>
+                  <Badge variant="fill" color="primary">Primary</Badge>
+                  <Badge variant="fill" color="success">Success</Badge>
+                  <Badge variant="fill" color="benefit">Benefit</Badge>
+                  <Badge variant="fill" color="warning">Warning</Badge>
+                  <Badge variant="fill" color="error">Error</Badge>
+                  <Badge variant="fill" color="info">Info</Badge>
+                </div>
+                
+                <div className="flex flex-wrap gap-xs items-center">
+                  <span className="text-xs font-medium w-16 text-description-light">Outline:</span>
+                  <Badge variant="outline" color="primary">Primary</Badge>
+                  <Badge variant="outline" color="success">Success</Badge>
+                  <Badge variant="outline" color="benefit">Benefit</Badge>
+                  <Badge variant="outline" color="warning">Warning</Badge>
+                  <Badge variant="outline" color="error">Error</Badge>
+                  <Badge variant="outline" color="info">Info</Badge>
+                </div>
+
+                <div className="flex flex-wrap gap-xs items-center">
+                  <span className="text-xs font-medium w-16 text-description-light">Soft:</span>
+                  <Badge variant="soft" color="primary">Primary</Badge>
+                  <Badge variant="soft" color="success">Success</Badge>
+                  <Badge variant="soft" color="benefit">Benefit</Badge>
+                  <Badge variant="soft" color="warning">Warning</Badge>
+                  <Badge variant="soft" color="error">Error</Badge>
+                  <Badge variant="soft" color="info">Info</Badge>
+                </div>
+              </div>
+            </div>
+
+            {/* Shapes */}
+            <div className="space-y-xs">
+              <h3 className="text-sm font-semibold text-secondary">6.2 Shapes (รูปทรง)</h3>
+              <div className="flex flex-wrap gap-md items-center">
+                <Badge shape="pill" color="primary">Pill Shape</Badge>
+                <Badge shape="square" color="primary">Square Shape</Badge>
+              </div>
+            </div>
+
+            {/* Sizes */}
+            <div className="space-y-xs">
+              <h3 className="text-sm font-semibold text-secondary">6.3 Sizes (ขนาด)</h3>
+              <div className="flex flex-wrap gap-md items-center">
+                <Badge size="small" color="success">Small</Badge>
+                <Badge size="medium" color="success">Medium</Badge>
+                <Badge size="large" color="success">Large</Badge>
+              </div>
+            </div>
+
+            {/* Removable & Icons */}
+            <div className="space-y-xs">
+              <h3 className="text-sm font-semibold text-secondary">6.4 Icon Position & Removable (ปุ่มลบแท็ก)</h3>
+              <div className="flex flex-wrap gap-md items-center">
+                <Badge color="info" iconPosition="left">
+                  <span>ℹ️</span> Info Icon Left
+                </Badge>
+                <Badge color="info" iconPosition="right">
+                  Info Icon Right <span>ℹ️</span>
+                </Badge>
+                <Badge 
+                  color="error" 
+                  removable 
+                  onRemove={() => alert("ลบแท็กเรียบร้อย!")}
+                >
+                  คลิกเพื่อลบแท็ก
+                </Badge>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        {/* หมวดหมู่ 7: Course Card Showcase */}
+        <div className="space-y-sm">
+          <h2 className="text-xl font-bold border-b border-neutral pb-xxs text-primary">7. Course Card (การ์ดแสดงคอร์สเรียน)</h2>
           <div className="flex flex-wrap gap-md justify-center p-md bg-light-2 rounded-2xl">
             <CourseCard
               imageUrl="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=600&auto=format&fit=crop"
