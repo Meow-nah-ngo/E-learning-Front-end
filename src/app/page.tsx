@@ -4,6 +4,7 @@ import React from 'react';
 import Button from '@/components/Button';
 import CourseCard from '@/components/CourseCard';
 import Badge from '@/components/Badge';
+import SearchBar from '@/components/SearchBar';
 
 const defaultSubjects = [
   "Physics",
