@@ -50,6 +50,7 @@ const defaultCourses = [
 ];
 
 export default function Page() {
+  const [searchbarValue, setSearchbarValue] = React.useState("");
   const [subjects, setSubjects] = React.useState<string[]>(defaultSubjects);
   const [selectedSubject, setSelectedSubject] = React.useState<string | null>(null);
   const [courses, setCourses] = React.useState<any[]>(defaultCourses);
@@ -76,6 +77,18 @@ export default function Page() {
       .then((data) => setCourses(data))
       .catch((err) => console.log("Failed to fetch courses, using defaults", err));
   }, [selectedSubject]);
+
+  // กรองข้อมูลตามที่พิมพ์ในช่องค้นหา (SearchBar)
+  const filteredCourses = React.useMemo(() => {
+    return courses.filter((course) => {
+      if (!searchbarValue) return true;
+      const search = searchbarValue.toLowerCase();
+      return (
+        course.title.toLowerCase().includes(search) ||
+        course.code.toLowerCase().includes(search)
+      );
+    });
+  }, [courses, searchbarValue]);
 
   return (
     <main className="min-h-screen bg-light-2 py-[48px] px-[16px] md:px-[32px]">
@@ -238,6 +251,15 @@ export default function Page() {
           <h2 className="text-xl font-bold border-b border-neutral pb-xxs text-primary">6.5 Subject Filters from API (ระบบตัวกรองวิชาที่เชื่อมต่อ API)</h2>
           <div className="p-md bg-light-2 rounded-2xl space-y-md">
             
+            {/* กล่องค้นหา (SearchBar) */}
+            <div className="flex justify-center pb-xxs">
+              <SearchBar
+                value={searchbarValue}
+                onChange={setSearchbarValue}
+                placeholder="ค้นหาคอร์สเรียนด้วยชื่อ หรือรหัสคอร์ส..."
+              />
+            </div>
+
             {/* แถบตัวกรองรายวิชา (ดึงมาจาก API หลังบ้าน) */}
             <div className="flex flex-wrap gap-xs justify-center">
               {/* ปุ่ม Clear Filter */}
@@ -274,16 +296,16 @@ export default function Page() {
             <div className="space-y-xs pt-sm border-t border-neutral/30">
               <div className="flex justify-between items-center text-xs text-description-light mb-sm">
                 <span>แสดงผลวิชา: <span className="font-semibold text-secondary">{selectedSubject || "ทั้งหมด"}</span></span>
-                <span>พบคอร์สทั้งหมด: <span className="font-semibold text-secondary">{courses.length} คอร์ส</span></span>
+                <span>พบคอร์สทั้งหมด: <span className="font-semibold text-secondary">{filteredCourses.length} คอร์ส</span></span>
               </div>
 
-              {courses.length === 0 ? (
+              {filteredCourses.length === 0 ? (
                 <div className="text-center py-lg text-xs text-description-light/60">
-                  📭 ไม่พบคอร์สเรียนในหมวดหมู่นี้
+                  📭 ไม่พบคอร์สเรียนในหมวดหมู่หรือตรงกับคำค้นหานี้
                 </div>
               ) : (
                 <div className="flex flex-wrap gap-md justify-center pt-xs">
-                  {courses.map((course) => (
+                  {filteredCourses.map((course) => (
                     <CourseCard
                       key={course.id}
                       imageUrl={course.imageUrl}
