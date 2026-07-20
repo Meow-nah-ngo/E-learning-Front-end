@@ -25,6 +25,17 @@
   --color-accent: #EC2329;
   --color-accent-tint: #A4161A;
 
+  --color-success: #10B981;
+  --color-success-tint: #34D399;
+  --color-warning: #FF9500;
+  --color-warning-tint: #FFB340;
+  --color-error: #EF4444;
+  --color-error-tint: #F87171;
+  --color-info: #3B82F6;
+  --color-info-tint: #60A5FA;
+  --color-benefit: #FFB000;
+  --color-benefit-tint: #FFD066;
+
   --color-title-light: #053C5E;
   --color-description-light: #475569;
   --color-title-dark: #FFFFFF;
