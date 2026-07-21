@@ -6,9 +6,9 @@ import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
 import SearchBar from "@/components/SearchBar";
 import Badge from "@/components/Badge";
-import CourseCard, { CourseCardProps } from "@/components/CourseCard";
-
-type CourseItem = CourseCardProps & { id: string; subject: string };
+import IndividualCourseCard, { IndividualCourseCardProps } from "@/components/cards/IndividualCourseCard";
+import StudentCourseCard, { StudentCourseCardProps } from "@/components/cards/StudentCourseCard";
+import TeacherCourseCard, { TeacherCourseCardProps } from "@/components/cards/TeacherCourseCard";
 
 // Subject List
 const subjectList = [
@@ -23,15 +23,20 @@ const subjectList = [
   "Geology",
 ];
 
-// Mock Course Data matching Figma mockup
-const individualCourses: CourseItem[] = [
+// 1. Individual Courses Data
+interface IndividualCourseItem extends IndividualCourseCardProps {
+  id: string;
+  subject: string;
+}
+
+const individualCourses: IndividualCourseItem[] = [
   {
     id: "ind-1",
     imageUrl: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=600&auto=format&fit=crop",
     title: "Creative Writing",
     code: "SW20246",
     benefit: "Certificate",
-    benefitType: "certificate" as const,
+    benefitType: "certificate",
     rating: 4.8,
     reviewCount: 32,
     date: "17 สิงหาคม 2569",
@@ -45,7 +50,7 @@ const individualCourses: CourseItem[] = [
     title: "Digital Marketing",
     code: "DM30112",
     benefit: "Diploma",
-    benefitType: "diploma" as const,
+    benefitType: "diploma",
     rating: 4.6,
     reviewCount: 58,
     date: "12 กันยายน 2569",
@@ -59,7 +64,7 @@ const individualCourses: CourseItem[] = [
     title: "Data Science Fundamentals",
     code: "DS10101",
     benefit: "Certificate",
-    benefitType: "certificate" as const,
+    benefitType: "certificate",
     rating: 4.9,
     reviewCount: 120,
     date: "5 มกราคม 2570",
@@ -73,7 +78,7 @@ const individualCourses: CourseItem[] = [
     title: "Photography Basics",
     code: "PH10001",
     benefit: "Certificate",
-    benefitType: "certificate" as const,
+    benefitType: "certificate",
     rating: 4.7,
     reviewCount: 45,
     date: "20 มกราคม 2570",
@@ -83,14 +88,20 @@ const individualCourses: CourseItem[] = [
   },
 ];
 
-const studentCourses: CourseItem[] = [
+// 2. Student Courses Data
+interface StudentCourseItem extends StudentCourseCardProps {
+  id: string;
+  subject: string;
+}
+
+const studentCourses: StudentCourseItem[] = [
   {
     id: "std-1",
     imageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=600&auto=format&fit=crop",
     title: "Innovative Strategies in Tech Development",
-    code: "คณิตศาสตร์ 10123",
-    benefit: "U1",
-    benefitType: "none" as const,
+    subjectCode: "คณิตศาสตร์ 10123",
+    gradeLevel: "ม.1",
+    unitTag: "U1",
     instructor: "ครูพินิจกุล",
     date: "23 สิงหาคม 2569",
     seatsOrStatus: "คอร์สเต็ม",
@@ -101,9 +112,9 @@ const studentCourses: CourseItem[] = [
     id: "std-2",
     imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop",
     title: "Sustainable Growth through Economic Marketing",
-    code: "คณิตศาสตร์ 10123",
-    benefit: "U1",
-    benefitType: "none" as const,
+    subjectCode: "คณิตศาสตร์ 10123",
+    gradeLevel: "ม.1",
+    unitTag: "U1",
     instructor: "ครูพินิจกุล",
     date: "12 กันยายน 2569",
     seatsOrStatus: "1,500 ที่นั่ง",
@@ -114,9 +125,9 @@ const studentCourses: CourseItem[] = [
     id: "std-3",
     imageUrl: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=600&auto=format&fit=crop",
     title: "Innovative Strategies for Digital Engagement",
-    code: "วิทยาศาสตร์ 20245",
-    benefit: "U2",
-    benefitType: "none" as const,
+    subjectCode: "วิทยาศาสตร์ 20245",
+    gradeLevel: "ม.2",
+    unitTag: "U2",
     instructor: "ครูสมชาย",
     date: "5 มกราคม 2570",
     seatsOrStatus: "1,200 ที่นั่ง",
@@ -127,9 +138,9 @@ const studentCourses: CourseItem[] = [
     id: "std-4",
     imageUrl: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=600&auto=format&fit=crop",
     title: "Creative Problem Solving in UI/UX Design",
-    code: "ศิลปะ 30567",
-    benefit: "U3",
-    benefitType: "none" as const,
+    subjectCode: "ศิลปะ 30567",
+    gradeLevel: "ม.3",
+    unitTag: "U3",
     instructor: "ครูพิชญา",
     date: "17 สิงหาคม 2569",
     seatsOrStatus: "150 ที่นั่ง",
@@ -138,14 +149,18 @@ const studentCourses: CourseItem[] = [
   },
 ];
 
-const teacherCourses: CourseItem[] = [
+// 3. Teacher Courses Data
+interface TeacherCourseItem extends TeacherCourseCardProps {
+  id: string;
+  subject: string;
+}
+
+const teacherCourses: TeacherCourseItem[] = [
   {
     id: "tch-1",
     imageUrl: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=600&auto=format&fit=crop",
     title: "Innovative Teaching Strategies for Modern Classrooms",
-    code: "การสอนสำหรับครู SW20234",
-    benefit: "",
-    benefitType: "none" as const,
+    topicBadge: "การสอนสำหรับครู SW20234",
     date: "5 มกราคม 2570",
     seatsOrStatus: "0 ที่นั่ง",
     isFull: true,
@@ -155,9 +170,7 @@ const teacherCourses: CourseItem[] = [
     id: "tch-2",
     imageUrl: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=600&auto=format&fit=crop",
     title: "Advanced Mathematics Tutoring",
-    code: "การจัดการเรียนรู้การสอนวิชาคณิตศาสตร์ขั้นสูง MATH205",
-    benefit: "",
-    benefitType: "none" as const,
+    topicBadge: "การจัดการเรียนรู้การสอนวิชาคณิตศาสตร์ขั้นสูง MATH205",
     date: "10 มกราคม 2570",
     seatsOrStatus: "70 ที่นั่ง",
     isFull: false,
@@ -167,9 +180,7 @@ const teacherCourses: CourseItem[] = [
     id: "tch-3",
     imageUrl: "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=600&auto=format&fit=crop",
     title: "Creative Writing Seminar",
-    code: "สัมมนาการเขียนเชิงสร้างสรรค์ ENG102",
-    benefit: "",
-    benefitType: "none" as const,
+    topicBadge: "สัมมนาการเขียนเชิงสร้างสรรค์ ENG102",
     date: "22 มกราคม 2570",
     seatsOrStatus: "75 ที่นั่ง",
     isFull: false,
@@ -179,9 +190,7 @@ const teacherCourses: CourseItem[] = [
     id: "tch-4",
     imageUrl: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=600&auto=format&fit=crop",
     title: "Physics Experiment Design",
-    code: "ห้องปฏิบัติการฟิสิกส์ LAB401",
-    benefit: "",
-    benefitType: "none" as const,
+    topicBadge: "ห้องปฏิบัติการฟิสิกส์ LAB401",
     date: "15 มกราคม 2570",
     seatsOrStatus: "70 ที่นั่ง",
     isFull: false,
@@ -193,21 +202,24 @@ export default function HomePage() {
   const [searchValue, setSearchValue] = useState("");
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
 
-  // Filter Helper Function
-  const filterCourses = (list: CourseItem[]) => {
-    return list.filter((item) => {
-      const matchesSubject = selectedSubject ? item.subject.toLowerCase() === selectedSubject.toLowerCase() : true;
-      const matchesSearch = searchValue
-        ? item.title.toLowerCase().includes(searchValue.toLowerCase()) ||
-          item.code.toLowerCase().includes(searchValue.toLowerCase())
-        : true;
-      return matchesSubject && matchesSearch;
-    });
+  // Filtering Logic helper
+  const matchesFilter = (item: { title: string; subject: string; topicBadge?: string; code?: string; subjectCode?: string }) => {
+    const matchesSubject = selectedSubject ? item.subject.toLowerCase() === selectedSubject.toLowerCase() : true;
+    
+    const searchTarget = (
+      item.title + " " + 
+      (item.code || "") + " " + 
+      (item.subjectCode || "") + " " + 
+      (item.topicBadge || "")
+    ).toLowerCase();
+    
+    const matchesSearch = searchValue ? searchTarget.includes(searchValue.toLowerCase()) : true;
+    return matchesSubject && matchesSearch;
   };
 
-  const filteredIndividuals = useMemo(() => filterCourses(individualCourses), [selectedSubject, searchValue]);
-  const filteredStudents = useMemo(() => filterCourses(studentCourses), [selectedSubject, searchValue]);
-  const filteredTeachers = useMemo(() => filterCourses(teacherCourses), [selectedSubject, searchValue]);
+  const filteredIndividuals = useMemo(() => individualCourses.filter(matchesFilter), [selectedSubject, searchValue]);
+  const filteredStudents = useMemo(() => studentCourses.filter(matchesFilter), [selectedSubject, searchValue]);
+  const filteredTeachers = useMemo(() => teacherCourses.filter(matchesFilter), [selectedSubject, searchValue]);
 
   return (
     <div className="min-h-screen bg-light-2 font-sans flex flex-col selection:bg-primary selection:text-white">
@@ -286,10 +298,9 @@ export default function HomePage() {
               📭 ไม่พบคอร์สเรียนในหมวดหมู่นี้
             </div>
           ) : (
-            /* Horizontal Scrollable Container */
             <div className="flex gap-5 overflow-x-auto pb-4 pt-1 scrollbar-thin scrollbar-thumb-neutral/40 scrollbar-track-transparent">
               {filteredIndividuals.map((course) => (
-                <CourseCard key={course.id} {...course} />
+                <IndividualCourseCard key={course.id} {...course} />
               ))}
             </div>
           )}
@@ -316,10 +327,9 @@ export default function HomePage() {
               📭 ไม่พบคอร์สเรียนในหมวดหมู่นี้
             </div>
           ) : (
-            /* Horizontal Scrollable Container */
             <div className="flex gap-5 overflow-x-auto pb-4 pt-1 scrollbar-thin scrollbar-thumb-neutral/40 scrollbar-track-transparent">
               {filteredStudents.map((course) => (
-                <CourseCard key={course.id} {...course} />
+                <StudentCourseCard key={course.id} {...course} />
               ))}
             </div>
           )}
@@ -346,10 +356,9 @@ export default function HomePage() {
               📭 ไม่พบคอร์สเรียนในหมวดหมู่นี้
             </div>
           ) : (
-            /* Horizontal Scrollable Container */
             <div className="flex gap-5 overflow-x-auto pb-4 pt-1 scrollbar-thin scrollbar-thumb-neutral/40 scrollbar-track-transparent">
               {filteredTeachers.map((course) => (
-                <CourseCard key={course.id} {...course} />
+                <TeacherCourseCard key={course.id} {...course} />
               ))}
             </div>
           )}
