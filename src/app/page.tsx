@@ -5,6 +5,7 @@ import Button from '@/components/Button';
 import CourseCard from '@/components/CourseCard';
 import Badge from '@/components/Badge';
 import SearchBar from '@/components/SearchBar';
+import { Sprout } from 'lucide-react';
 
 const defaultSubjects = [
   "Physics",
@@ -97,7 +98,7 @@ export default function Page() {
         {/* หัวข้อโปรเจกต์ */}
         <div className="space-y-xs">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wide">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            <Sprout className="w-4 h-4 text-primary shrink-0" />
             Ant Design Token Mapping
           </div>
           <h1 className="text-4xl font-bold text-primary">Ant Design Button Showcase</h1>
@@ -227,6 +228,9 @@ export default function Page() {
             <div className="space-y-xs">
               <h3 className="text-sm font-semibold text-secondary">6.4 Icon Position & Removable (ปุ่มลบแท็ก)</h3>
               <div className="flex flex-wrap gap-md items-center">
+                <Badge color="success" iconPosition="left">
+                  <Sprout className="w-3.5 h-3.5 inline mr-1" /> Sprout Icon
+                </Badge>
                 <Badge color="info" iconPosition="left">
                   <span>ℹ️</span> Info Icon Left
                 </Badge>
