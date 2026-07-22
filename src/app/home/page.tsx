@@ -263,7 +263,7 @@ export default function HomePage() {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <span className="px-2.5 py-0.5 rounded-md bg-primary text-white text-xs font-bold uppercase tracking-wide">
+              <span className="px-2.5 py-0.5 rounded-md bg-accent text-white text-xs font-bold uppercase tracking-wide">
                 NEW
               </span>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-secondary tracking-tight">
@@ -292,7 +292,7 @@ export default function HomePage() {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <span className="px-2.5 py-0.5 rounded-md bg-primary text-white text-xs font-bold uppercase tracking-wide">
+              <span className="px-2.5 py-0.5 rounded-md bg-accent text-white text-xs font-bold uppercase tracking-wide">
                 NEW
               </span>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-secondary tracking-tight">
@@ -321,7 +321,7 @@ export default function HomePage() {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <span className="px-2.5 py-0.5 rounded-md bg-primary text-white text-xs font-bold uppercase tracking-wide">
+              <span className="px-2.5 py-0.5 rounded-md bg-accent text-white text-xs font-bold uppercase tracking-wide">
                 NEW
               </span>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-secondary tracking-tight">

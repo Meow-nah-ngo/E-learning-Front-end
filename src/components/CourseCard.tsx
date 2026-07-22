@@ -4,17 +4,17 @@ import { Crown, GraduationCap, Clock, User, Star, AlertCircle } from "lucide-rea
 export interface CourseCardProps {
   imageUrl: string;
   title: string;
-  code: string;                 // Main red badge
-  gradeLevel?: string;          // Optional red grade level badge (e.g. ม.1, ม.2, ม.3)
-  benefit?: string;             // Optional yellow benefit badge (e.g. Certificate, U1)
+  code: string;                 
+  gradeLevel?: string;          
+  benefit?: string;             // Optional
   benefitType?: "certificate" | "diploma" | "none";
   rating?: number;
   reviewCount?: number;
   instructor?: string;
   date: string;
-  registeredSeats?: number;     // Database: Number of registered students
-  maxSeats?: number;            // Database: Course capacity limit
-  seatsOrStatus?: string;       // Text fallback (e.g. "คอร์สเต็ม", "ปิดรับสมัคร")
+  registeredSeats?: number;     // Database
+  maxSeats?: number;            // Database
+  seatsOrStatus?: string;       // Text fallback
   isFull?: boolean;
   className?: string;
 }
@@ -37,7 +37,7 @@ export default function CourseCard({
   className = "",
 }: CourseCardProps) {
   
-  // Render benefit icon based on benefitType
+  // Benefit Icon Rendering based on benefitType
   const renderBenefitIcon = () => {
     if (benefitType === "certificate") {
       return <Crown className="w-3 h-3 mr-1 text-white fill-white shrink-0" />;
@@ -48,7 +48,7 @@ export default function CourseCard({
     return null;
   };
 
-  // Smart seat status calculation using Database props
+  // Seat status calculation using Database props
   const renderSeatStatus = () => {
     if (isFull || seatsOrStatus === "คอร์สเต็ม") {
       return {
