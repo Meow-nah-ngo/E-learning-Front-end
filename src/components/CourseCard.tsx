@@ -1,18 +1,20 @@
 import React from "react";
-import { Crown, GraduationCap, Clock, User, Star } from "lucide-react";
+import { Crown, GraduationCap, Clock, User, Star, AlertCircle } from "lucide-react";
 
 export interface CourseCardProps {
   imageUrl: string;
   title: string;
-  code: string;               // Main red badge
-  gradeLevel?: string;        // Optional red grade level badge (e.g. ม.1, ม.2, ม.3)
-  benefit?: string;           // Optional yellow benefit badge (e.g. Certificate, U1)
+  code: string;                 // Main red badge
+  gradeLevel?: string;          // Optional red grade level badge (e.g. ม.1, ม.2, ม.3)
+  benefit?: string;             // Optional yellow benefit badge (e.g. Certificate, U1)
   benefitType?: "certificate" | "diploma" | "none";
   rating?: number;
   reviewCount?: number;
   instructor?: string;
   date: string;
-  seatsOrStatus: string;
+  registeredSeats?: number;     // Database: Number of registered students
+  maxSeats?: number;            // Database: Course capacity limit
+  seatsOrStatus?: string;       // Text fallback (e.g. "คอร์สเต็ม", "ปิดรับสมัคร")
   isFull?: boolean;
   className?: string;
 }
@@ -28,6 +30,8 @@ export default function CourseCard({
   reviewCount,
   instructor,
   date,
+  registeredSeats,
+  maxSeats,
   seatsOrStatus,
   isFull = false,
   className = "",
@@ -44,6 +48,52 @@ export default function CourseCard({
     return null;
   };
 
+  // Smart seat status calculation using Database props
+  const renderSeatStatus = () => {
+    if (isFull || seatsOrStatus === "คอร์สเต็ม") {
+      return {
+        text: "คอร์สเต็ม",
+        colorClass: "text-accent",
+        icon: <User className="w-3.5 h-3.5 shrink-0 text-accent" />,
+      };
+    }
+
+    if (registeredSeats !== undefined && maxSeats !== undefined) {
+      const remaining = maxSeats - registeredSeats;
+
+      if (remaining <= 0) {
+        return {
+          text: "คอร์สเต็ม",
+          colorClass: "text-accent",
+          icon: <User className="w-3.5 h-3.5 shrink-0 text-accent" />,
+        };
+      }
+
+      if (remaining < 5) {
+        return {
+          text: `${remaining} ที่นั่ง`,
+          colorClass: "text-warning font-semibold",
+          icon: <AlertCircle className="w-3.5 h-3.5 shrink-0 text-warning" />,
+        };
+      }
+
+      return {
+        text: `${remaining.toLocaleString()} ที่นั่ง`,
+        colorClass: "text-description-light",
+        icon: <User className="w-3.5 h-3.5 shrink-0 text-description-light" />,
+      };
+    }
+
+    // Fallback to text status if no seat numbers are passed
+    return {
+      text: seatsOrStatus || "",
+      colorClass: "text-description-light",
+      icon: <User className="w-3.5 h-3.5 shrink-0 text-description-light" />,
+    };
+  };
+
+  const statusInfo = renderSeatStatus();
+
   return (
     <div className={`w-[285px] shrink-0 bg-white rounded-2xl border border-neutral/40 shadow-xs p-4 flex flex-col gap-3 font-sans ${className}`}>
       {/* 1. Header Image */}
@@ -58,14 +108,14 @@ export default function CourseCard({
       {/* 2. Body Content */}
       <div className="flex flex-col gap-2.5 flex-grow justify-between">
         {/* Title */}
-        <h3 className="text-base font-bold text-secondary leading-snug line-clamp-2 min-h-[44px]">
+        <h3 className="text-base font-bold text-secondary leading-snug line-clamp-2 overflow-hidden text-ellipsis min-h-[44px]">
           {title}
         </h3>
         
         {/* Badges & Rating/Instructor Row */}
         <div className="flex items-center gap-1.5 flex-wrap">
           {/* Main Code Badge (Red) */}
-          <span className="inline-flex items-center px-2.5 py-0.5 rounded-md bg-primary text-white text-[11px] font-medium select-none truncate max-w-[130px]">
+          <span className="inline-flex items-center px-2.5 py-0.5 rounded-md bg-primary text-white text-[11px] font-medium select-none">
             {code}
           </span>
 
@@ -107,10 +157,10 @@ export default function CourseCard({
           <span>{date}</span>
         </div>
 
-        {/* Status Info */}
-        <div className={`flex items-center gap-1 font-medium ${isFull ? 'text-accent' : 'text-description-light'}`}>
-          <User className={`w-3.5 h-3.5 shrink-0 ${isFull ? 'text-accent' : 'text-description-light'}`} />
-          <span>{seatsOrStatus}</span>
+        {/* Dynamic Status Info */}
+        <div className={`flex items-center gap-1 font-medium ${statusInfo.colorClass}`}>
+          {statusInfo.icon}
+          <span>{statusInfo.text}</span>
         </div>
       </div>
     </div>
