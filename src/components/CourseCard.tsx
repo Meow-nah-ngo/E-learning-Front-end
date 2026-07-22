@@ -4,17 +4,17 @@ import { Crown, GraduationCap, Clock, User, Star, AlertCircle } from "lucide-rea
 export interface CourseCardProps {
   imageUrl: string;
   title: string;
-  code: string;                 
-  gradeLevel?: string;          
-  benefit?: string;             // Optional
+  code: string;                 // Main red badge
+  gradeLevel?: string;          // Optional red grade level badge (e.g. ม.1, ม.2, ม.3)
+  benefit?: string;             // Optional yellow benefit badge (e.g. Certificate, U1)
   benefitType?: "certificate" | "diploma" | "none";
   rating?: number;
   reviewCount?: number;
   instructor?: string;
   date: string;
-  registeredSeats?: number;     // Database
-  maxSeats?: number;            // Database
-  seatsOrStatus?: string;       // Text fallback
+  registeredSeats?: number;     // Database: Number of registered students
+  maxSeats?: number;            // Database: Course capacity limit
+  seatsOrStatus?: string;       // Text fallback (e.g. "คอร์สเต็ม", "ปิดรับสมัคร")
   isFull?: boolean;
   className?: string;
 }
@@ -37,24 +37,24 @@ export default function CourseCard({
   className = "",
 }: CourseCardProps) {
   
-  // Benefit Icon Rendering based on benefitType
+  // Render benefit icon based on benefitType
   const renderBenefitIcon = () => {
     if (benefitType === "certificate") {
-      return <Crown className="w-3 h-3 mr-1 text-white fill-white shrink-0" />;
+      return <Crown className="w-3.5 h-3.5 mr-1 text-white fill-white shrink-0" />;
     }
     if (benefitType === "diploma") {
-      return <GraduationCap className="w-3 h-3 mr-1 text-white fill-white shrink-0" />;
+      return <GraduationCap className="w-3.5 h-3.5 mr-1 text-white fill-white shrink-0" />;
     }
     return null;
   };
 
-  // Seat status calculation using Database props
+  // Smart seat status calculation using Database props
   const renderSeatStatus = () => {
     if (isFull || seatsOrStatus === "คอร์สเต็ม") {
       return {
         text: "คอร์สเต็ม",
         colorClass: "text-accent",
-        icon: <User className="w-3.5 h-3.5 shrink-0 text-accent" />,
+        icon: <User className="w-4 h-4 shrink-0 text-accent" />,
       };
     }
 
@@ -65,22 +65,22 @@ export default function CourseCard({
         return {
           text: "คอร์สเต็ม",
           colorClass: "text-accent",
-          icon: <User className="w-3.5 h-3.5 shrink-0 text-accent" />,
+          icon: <User className="w-4 h-4 shrink-0 text-accent" />,
         };
       }
 
       if (remaining < 5) {
         return {
           text: `${remaining} ที่นั่ง`,
-          colorClass: "text-warning font-semibold",
-          icon: <AlertCircle className="w-3.5 h-3.5 shrink-0 text-warning" />,
+          colorClass: "text-warning font-bold",
+          icon: <AlertCircle className="w-4 h-4 shrink-0 text-warning" />,
         };
       }
 
       return {
         text: `${remaining.toLocaleString()} ที่นั่ง`,
         colorClass: "text-description-light",
-        icon: <User className="w-3.5 h-3.5 shrink-0 text-description-light" />,
+        icon: <User className="w-4 h-4 shrink-0 text-description-light" />,
       };
     }
 
@@ -88,16 +88,24 @@ export default function CourseCard({
     return {
       text: seatsOrStatus || "",
       colorClass: "text-description-light",
-      icon: <User className="w-3.5 h-3.5 shrink-0 text-description-light" />,
+      icon: <User className="w-4 h-4 shrink-0 text-description-light" />,
     };
   };
 
   const statusInfo = renderSeatStatus();
 
+  // Check if custom width/height classes are passed to support Figma's Hug/Fill behaviors
+  const hasWidth = className.split(" ").some(c => c.startsWith("w-") || c.startsWith("max-w-") || c.startsWith("min-w-"));
+  const hasHeight = className.split(" ").some(c => c.startsWith("h-") || c.startsWith("max-h-") || c.startsWith("min-h-"));
+
+  const widthStyle = hasWidth ? "" : "w-[352px]";
+  const heightStyle = hasHeight ? "" : "h-[440px]";
+
   return (
-    <div className={`w-[285px] shrink-0 bg-white rounded-2xl border border-neutral/40 shadow-xs p-4 flex flex-col gap-3 font-sans ${className}`}>
-      {/* 1. Header Image */}
-      <div className="relative aspect-[1.5] w-full overflow-hidden rounded-xl">
+    <div className={`${widthStyle} ${heightStyle} shrink-0 bg-white rounded-[20px] border border-neutral/40 shadow-xs p-6 flex flex-col font-sans ${className}`}>
+      
+      {/* 1. Header Image Section (24px gap/margin-bottom) */}
+      <div className="w-full h-[200px] shrink-0 overflow-hidden rounded-[16px] mb-6">
         <img
           src={imageUrl}
           alt={title}
@@ -105,30 +113,30 @@ export default function CourseCard({
         />
       </div>
 
-      {/* 2. Body Content */}
-      <div className="flex flex-col gap-2.5 flex-grow justify-between">
+      {/* 2. Top-Aligned Content Group (Title + Badges, 24px gap) */}
+      <div className="flex flex-col gap-6 flex-grow">
         {/* Title */}
-        <h3 className="text-base font-bold text-secondary leading-snug line-clamp-2 overflow-hidden text-ellipsis min-h-[44px]">
+        <h3 className="text-xl font-bold text-secondary leading-snug line-clamp-2">
           {title}
         </h3>
         
-        {/* Badges & Rating/Instructor Row */}
-        <div className="flex items-center gap-1.5 flex-wrap">
+        {/* Badges Row */}
+        <div className="flex items-center gap-2 flex-wrap">
           {/* Main Code Badge (Red) */}
-          <span className="inline-flex items-center px-2.5 py-0.5 rounded-md bg-primary text-white text-[11px] font-medium select-none">
+          <span className="inline-flex items-center px-3 py-1 rounded-[6px] bg-primary text-white text-[13px] font-semibold select-none">
             {code}
           </span>
 
           {/* Optional Grade Level Badge (Red, e.g. ม.1, ม.2, ม.3) */}
           {gradeLevel && (
-            <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-primary text-white text-[11px] font-medium select-none">
+            <span className="inline-flex items-center px-3 py-1 rounded-[6px] bg-primary text-white text-[13px] font-semibold select-none">
               {gradeLevel}
             </span>
           )}
           
           {/* Optional Benefit Badge (Yellow) */}
           {benefit && (
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-benefit text-white text-[11px] font-medium select-none">
+            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-[6px] bg-benefit text-white text-[13px] font-semibold select-none">
               {renderBenefitIcon()}
               {benefit}
             </span>
@@ -136,33 +144,34 @@ export default function CourseCard({
 
           {/* Rating or Instructor on the Right */}
           {rating !== undefined ? (
-            <div className="ml-auto flex items-center gap-1 text-xs font-semibold text-secondary">
-              <Star className="w-3.5 h-3.5 text-secondary fill-secondary shrink-0" />
+            <div className="ml-auto flex items-center gap-1 text-sm font-bold text-secondary">
+              <Star className="w-4 h-4 text-secondary fill-secondary shrink-0" />
               <span>{rating}</span>
               {reviewCount !== undefined && <span className="text-secondary/70 font-normal">({reviewCount})</span>}
             </div>
           ) : instructor ? (
-            <span className="ml-auto text-xs text-description-light font-normal truncate max-w-[80px]">
+            <span className="ml-auto text-sm text-description-light font-normal truncate max-w-[90px]">
               {instructor}
             </span>
           ) : null}
         </div>
       </div>
 
-      {/* 3. Footer Status Section */}
-      <div className="pt-2 border-t border-neutral/30 flex items-center justify-between text-xs font-normal">
+      {/* 3. Bottom-Aligned Footer Section (Push to bottom using mt-auto) */}
+      <div className="flex items-center justify-between text-sm font-semibold mt-auto pt-6">
         {/* Date Info */}
-        <div className="flex items-center gap-1 text-description-light">
-          <Clock className="w-3.5 h-3.5 text-description-light shrink-0" />
+        <div className="flex items-center gap-1.5 text-description-light">
+          <Clock className="w-4 h-4 text-description-light shrink-0" />
           <span>{date}</span>
         </div>
 
         {/* Dynamic Status Info */}
-        <div className={`flex items-center gap-1 font-medium ${statusInfo.colorClass}`}>
+        <div className={`flex items-center gap-1.5 ${statusInfo.colorClass}`}>
           {statusInfo.icon}
           <span>{statusInfo.text}</span>
         </div>
       </div>
+
     </div>
   );
 }

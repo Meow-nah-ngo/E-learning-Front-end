@@ -270,7 +270,7 @@ export default function HomePage() {
                 For Individuals
               </h2>
             </div>
-            <a href="#" className="text-xs sm:text-sm font-semibold text-description-light hover:text-primary transition-colors">
+            <a href="#" className="hidden sm:inline text-xs sm:text-sm font-semibold text-description-light hover:text-primary transition-colors">
               View All
             </a>
           </div>
@@ -280,7 +280,7 @@ export default function HomePage() {
               📭 ไม่พบคอร์สเรียนในหมวดหมู่นี้
             </div>
           ) : (
-            <div className="flex gap-5 overflow-x-auto pb-4 pt-1 scrollbar-thin scrollbar-thumb-neutral/40 scrollbar-track-transparent">
+            <div className="flex flex-col items-center gap-6 sm:flex-row sm:overflow-x-auto sm:pb-4 pt-1 scrollbar-thin scrollbar-thumb-neutral/40 scrollbar-track-transparent">
               {filteredIndividuals.map((course) => (
                 <CourseCard key={course.id} {...course} />
               ))}
@@ -299,7 +299,7 @@ export default function HomePage() {
                 For Students
               </h2>
             </div>
-            <a href="#" className="text-xs sm:text-sm font-semibold text-description-light hover:text-primary transition-colors">
+            <a href="#" className="hidden sm:inline text-xs sm:text-sm font-semibold text-description-light hover:text-primary transition-colors">
               View All
             </a>
           </div>
@@ -309,7 +309,7 @@ export default function HomePage() {
               📭 ไม่พบคอร์สเรียนในหมวดหมู่นี้
             </div>
           ) : (
-            <div className="flex gap-5 overflow-x-auto pb-4 pt-1 scrollbar-thin scrollbar-thumb-neutral/40 scrollbar-track-transparent">
+            <div className="flex flex-col items-center gap-6 sm:flex-row sm:overflow-x-auto sm:pb-4 pt-1 scrollbar-thin scrollbar-thumb-neutral/40 scrollbar-track-transparent">
               {filteredStudents.map((course) => (
                 <CourseCard key={course.id} {...course} />
               ))}
@@ -328,7 +328,7 @@ export default function HomePage() {
                 For Teachers
               </h2>
             </div>
-            <a href="#" className="text-xs sm:text-sm font-semibold text-description-light hover:text-primary transition-colors">
+            <a href="#" className="hidden sm:inline text-xs sm:text-sm font-semibold text-description-light hover:text-primary transition-colors">
               View All
             </a>
           </div>
@@ -338,7 +338,7 @@ export default function HomePage() {
               📭 ไม่พบคอร์สเรียนในหมวดหมู่นี้
             </div>
           ) : (
-            <div className="flex gap-5 overflow-x-auto pb-4 pt-1 scrollbar-thin scrollbar-thumb-neutral/40 scrollbar-track-transparent">
+            <div className="flex flex-col items-center gap-6 sm:flex-row sm:overflow-x-auto sm:pb-4 pt-1 scrollbar-thin scrollbar-thumb-neutral/40 scrollbar-track-transparent">
               {filteredTeachers.map((course) => (
                 <CourseCard key={course.id} {...course} />
               ))}
