@@ -6,9 +6,7 @@ import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
 import SearchBar from "@/components/SearchBar";
 import Badge from "@/components/Badge";
-import IndividualCourseCard, { IndividualCourseCardProps } from "@/components/cards/IndividualCourseCard";
-import StudentCourseCard, { StudentCourseCardProps } from "@/components/cards/StudentCourseCard";
-import TeacherCourseCard, { TeacherCourseCardProps } from "@/components/cards/TeacherCourseCard";
+import CourseCard, { CourseCardProps } from "@/components/CourseCard";
 
 // Subject List
 const subjectList = [
@@ -23,13 +21,14 @@ const subjectList = [
   "Geology",
 ];
 
-// 1. Individual Courses Data
-interface IndividualCourseItem extends IndividualCourseCardProps {
+// Unified Course Item type
+interface CourseItem extends CourseCardProps {
   id: string;
   subject: string;
 }
 
-const individualCourses: IndividualCourseItem[] = [
+// 1. Individual Courses Data
+const individualCourses: CourseItem[] = [
   {
     id: "ind-1",
     imageUrl: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=600&auto=format&fit=crop",
@@ -89,19 +88,13 @@ const individualCourses: IndividualCourseItem[] = [
 ];
 
 // 2. Student Courses Data
-interface StudentCourseItem extends StudentCourseCardProps {
-  id: string;
-  subject: string;
-}
-
-const studentCourses: StudentCourseItem[] = [
+const studentCourses: CourseItem[] = [
   {
     id: "std-1",
     imageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=600&auto=format&fit=crop",
     title: "Innovative Strategies in Tech Development",
-    subjectCode: "คณิตศาสตร์ 10123",
+    code: "คณิตศาสตร์ 10123",
     gradeLevel: "ม.1",
-    unitTag: "U1",
     instructor: "ครูพินิจกุล",
     date: "23 สิงหาคม 2569",
     seatsOrStatus: "คอร์สเต็ม",
@@ -112,9 +105,8 @@ const studentCourses: StudentCourseItem[] = [
     id: "std-2",
     imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop",
     title: "Sustainable Growth through Economic Marketing",
-    subjectCode: "คณิตศาสตร์ 10123",
+    code: "คณิตศาสตร์ 10123",
     gradeLevel: "ม.1",
-    unitTag: "U1",
     instructor: "ครูพินิจกุล",
     date: "12 กันยายน 2569",
     seatsOrStatus: "1,500 ที่นั่ง",
@@ -125,9 +117,8 @@ const studentCourses: StudentCourseItem[] = [
     id: "std-3",
     imageUrl: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=600&auto=format&fit=crop",
     title: "Innovative Strategies for Digital Engagement",
-    subjectCode: "วิทยาศาสตร์ 20245",
+    code: "วิทยาศาสตร์ 20245",
     gradeLevel: "ม.2",
-    unitTag: "U2",
     instructor: "ครูสมชาย",
     date: "5 มกราคม 2570",
     seatsOrStatus: "1,200 ที่นั่ง",
@@ -138,9 +129,8 @@ const studentCourses: StudentCourseItem[] = [
     id: "std-4",
     imageUrl: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=600&auto=format&fit=crop",
     title: "Creative Problem Solving in UI/UX Design",
-    subjectCode: "ศิลปะ 30567",
+    code: "ศิลปะ 30567",
     gradeLevel: "ม.3",
-    unitTag: "U3",
     instructor: "ครูพิชญา",
     date: "17 สิงหาคม 2569",
     seatsOrStatus: "150 ที่นั่ง",
@@ -150,17 +140,13 @@ const studentCourses: StudentCourseItem[] = [
 ];
 
 // 3. Teacher Courses Data
-interface TeacherCourseItem extends TeacherCourseCardProps {
-  id: string;
-  subject: string;
-}
-
-const teacherCourses: TeacherCourseItem[] = [
+const teacherCourses: CourseItem[] = [
   {
     id: "tch-1",
     imageUrl: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=600&auto=format&fit=crop",
     title: "Innovative Teaching Strategies for Modern Classrooms",
-    topicBadge: "การสอนสำหรับครู SW20234",
+    code: "การสอนสำหรับครู SW20234",
+    benefitType: "none",
     date: "5 มกราคม 2570",
     seatsOrStatus: "0 ที่นั่ง",
     isFull: true,
@@ -170,7 +156,8 @@ const teacherCourses: TeacherCourseItem[] = [
     id: "tch-2",
     imageUrl: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=600&auto=format&fit=crop",
     title: "Advanced Mathematics Tutoring",
-    topicBadge: "การจัดการเรียนรู้การสอนวิชาคณิตศาสตร์ขั้นสูง MATH205",
+    code: "การจัดการเรียนรู้การสอนวิชาคณิตศาสตร์ขั้นสูง MATH205",
+    benefitType: "none",
     date: "10 มกราคม 2570",
     seatsOrStatus: "70 ที่นั่ง",
     isFull: false,
@@ -180,7 +167,8 @@ const teacherCourses: TeacherCourseItem[] = [
     id: "tch-3",
     imageUrl: "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=600&auto=format&fit=crop",
     title: "Creative Writing Seminar",
-    topicBadge: "สัมมนาการเขียนเชิงสร้างสรรค์ ENG102",
+    code: "สัมมนาการเขียนเชิงสร้างสรรค์ ENG102",
+    benefitType: "none",
     date: "22 มกราคม 2570",
     seatsOrStatus: "75 ที่นั่ง",
     isFull: false,
@@ -190,7 +178,8 @@ const teacherCourses: TeacherCourseItem[] = [
     id: "tch-4",
     imageUrl: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=600&auto=format&fit=crop",
     title: "Physics Experiment Design",
-    topicBadge: "ห้องปฏิบัติการฟิสิกส์ LAB401",
+    code: "ห้องปฏิบัติการฟิสิกส์ LAB401",
+    benefitType: "none",
     date: "15 มกราคม 2570",
     seatsOrStatus: "70 ที่นั่ง",
     isFull: false,
@@ -203,16 +192,9 @@ export default function HomePage() {
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
 
   // Filtering Logic helper
-  const matchesFilter = (item: { title: string; subject: string; topicBadge?: string; code?: string; subjectCode?: string }) => {
+  const matchesFilter = (item: CourseItem) => {
     const matchesSubject = selectedSubject ? item.subject.toLowerCase() === selectedSubject.toLowerCase() : true;
-    
-    const searchTarget = (
-      item.title + " " + 
-      (item.code || "") + " " + 
-      (item.subjectCode || "") + " " + 
-      (item.topicBadge || "")
-    ).toLowerCase();
-    
+    const searchTarget = (item.title + " " + item.code).toLowerCase();
     const matchesSearch = searchValue ? searchTarget.includes(searchValue.toLowerCase()) : true;
     return matchesSubject && matchesSearch;
   };
@@ -300,7 +282,7 @@ export default function HomePage() {
           ) : (
             <div className="flex gap-5 overflow-x-auto pb-4 pt-1 scrollbar-thin scrollbar-thumb-neutral/40 scrollbar-track-transparent">
               {filteredIndividuals.map((course) => (
-                <IndividualCourseCard key={course.id} {...course} />
+                <CourseCard key={course.id} {...course} />
               ))}
             </div>
           )}
@@ -329,7 +311,7 @@ export default function HomePage() {
           ) : (
             <div className="flex gap-5 overflow-x-auto pb-4 pt-1 scrollbar-thin scrollbar-thumb-neutral/40 scrollbar-track-transparent">
               {filteredStudents.map((course) => (
-                <StudentCourseCard key={course.id} {...course} />
+                <CourseCard key={course.id} {...course} />
               ))}
             </div>
           )}
@@ -358,7 +340,7 @@ export default function HomePage() {
           ) : (
             <div className="flex gap-5 overflow-x-auto pb-4 pt-1 scrollbar-thin scrollbar-thumb-neutral/40 scrollbar-track-transparent">
               {filteredTeachers.map((course) => (
-                <TeacherCourseCard key={course.id} {...course} />
+                <CourseCard key={course.id} {...course} />
               ))}
             </div>
           )}
