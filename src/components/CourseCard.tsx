@@ -158,7 +158,7 @@ export default function CourseCard({
       </div>
 
       {/* 3. Bottom-Aligned Footer Section (Push to bottom using mt-auto) */}
-      <div className="flex items-center justify-between text-sm font-semibold mt-auto pt-6">
+      <div className="flex items-center justify-between text-sm font-semibold mt-auto pt-6 border-t border-neutral/30">
         {/* Date Info */}
         <div className="flex items-center gap-1.5 text-description-light">
           <Clock className="w-4 h-4 text-description-light shrink-0" />
