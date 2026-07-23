@@ -104,7 +104,6 @@ export default function CourseCard({
   return (
     <div className={`${widthStyle} ${heightStyle} shrink-0 bg-white rounded-[20px] border border-neutral/40 shadow-xs p-6 flex flex-col font-sans ${className}`}>
       
-      {/* 1. Header Image Section (24px gap/margin-bottom) */}
       <div className="w-full h-[200px] shrink-0 overflow-hidden rounded-[16px] mb-6">
         <img
           src={imageUrl}
@@ -113,7 +112,6 @@ export default function CourseCard({
         />
       </div>
 
-      {/* 2. Top-Aligned Content Group (Title + Badges, 24px gap) */}
       <div className="flex flex-col gap-6 flex-grow">
         {/* Title */}
         <h3 className="text-xl font-bold text-secondary leading-snug line-clamp-2">
