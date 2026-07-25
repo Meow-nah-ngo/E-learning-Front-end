@@ -48,7 +48,7 @@ export default function CourseCard({
     return null;
   };
 
-  // Smart seat status calculation using Database props
+  // Seat status calculation using Database props
   const renderSeatStatus = () => {
     if (isFull || seatsOrStatus === "คอร์สเต็ม") {
       return {
@@ -102,7 +102,7 @@ export default function CourseCard({
   const heightStyle = hasHeight ? "" : "h-[440px]";
 
   return (
-    <div className={`${widthStyle} ${heightStyle} shrink-0 bg-white rounded-[20px] border border-neutral/40 shadow-xs p-6 flex flex-col font-sans ${className}`}>
+    <div className={`${widthStyle} ${heightStyle} shrink-0 bg-white rounded-[20px] border border-neutral/40 shadow-xs p-6 flex flex-col font-sans hover:border-primary focus-within:ring-2 hover:ring-primary/10 transition-all duration-200 hover:scale-101 ${className}`}>
       
       <div className="w-full h-[200px] shrink-0 overflow-hidden rounded-[16px] mb-6">
         <img

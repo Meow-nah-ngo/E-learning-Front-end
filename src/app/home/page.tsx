@@ -223,19 +223,19 @@ export default function HomePage() {
           />
         </div>
 
-        {/* Subject Filter Pills */}
+        {/* Filter All Subjects */}
         <div className="flex flex-wrap gap-2 sm:gap-3 justify-center items-center">
           <Badge
             variant={selectedSubject === null ? "fill" : "outline"}
             color="primary"
             shape="pill"
-            size="medium"
+            size="large"
             className="cursor-pointer font-medium px-4 py-1.5 hover:bg-primary hover:text-white transition-all duration-200"
             onClick={() => setSelectedSubject(null)}
           >
             All Subjects
           </Badge>
-
+          {/* Filter Badges */}
           {subjectList.map((subj) => {
             const isSelected = selectedSubject === subj;
             return (
@@ -244,7 +244,7 @@ export default function HomePage() {
                 variant={isSelected ? "fill" : "outline"}
                 color="primary"
                 shape="pill"
-                size="medium"
+                size="large"
                 className="cursor-pointer font-medium px-4 py-1.5 hover:bg-primary hover:text-white transition-all duration-200"
                 onClick={() => setSelectedSubject(isSelected ? null : subj)}
               >
