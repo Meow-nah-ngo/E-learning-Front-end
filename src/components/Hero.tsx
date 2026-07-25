@@ -35,11 +35,11 @@ export default function Hero() {
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto pt-2">
-          <button className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-primary hover:bg-primary-tint text-white text-base font-bold shadow-lg transition-all duration-200 flex">
+          <button className="cursor-pointer w-full sm:w-auto px-8 py-3.5 rounded-full bg-primary hover:bg-primary-tint text-white text-base font-bold shadow-lg flex items-center justify-center gap-2 transition-all duration-200">
             Get Started
           </button>
 
-          <button className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-white border border-neutral/60 hover:border-secondary text-secondary text-base font-bold shadow-lg flex items-center justify-center gap-2 transition-all duration-200">
+          <button className="cursor-pointer w-full sm:w-auto px-8 py-3.5 rounded-full bg-white border border-neutral/60 hover:border-secondary text-secondary text-base font-bold shadow-lg flex items-center justify-center gap-2 transition-all duration-200">
             <span>Learn More</span>
             <ArrowRight className="w-5 h-5 text-secondary" />
           </button>
