@@ -105,7 +105,7 @@ export default function CourseCard({
   return (
     <div className={`${widthStyle} ${heightStyle} shrink-0 bg-white rounded-[20px] border border-neutral/40 shadow-xs p-6 flex flex-col font-sans cursor-pointer hover:border-primary focus-within:ring-2 hover:ring-primary/10 transition-all duration-200 hover:scale-101 active:scale-102 ${className}`}>
       
-      <div className="w-full h-[200px] shrink-0 overflow-hidden rounded-[16px] mb-6">
+      <div className="w-full h-[200px] shrink-0 overflow-hidden rounded-[16px] mb-6 bg-neutral/20">
         <img
           src={imageUrl}
           alt={title}

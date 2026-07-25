@@ -31,7 +31,7 @@ interface CourseItem extends CourseCardProps {
 const individualCourses: CourseItem[] = [
   {
     id: "ind-1",
-    imageUrl: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=600&auto=format&fit=crop",
+    imageUrl: "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=600&auto=format&fit=crop",
     title: "Creative Writing",
     code: "SW20246",
     benefit: "Certificate",
@@ -280,7 +280,7 @@ export default function HomePage() {
               📭 ไม่พบคอร์สเรียนในหมวดหมู่นี้
             </div>
           ) : (
-            <div className="flex flex-col items-center gap-6 sm:flex-row sm:overflow-x-auto sm:pb-4 pt-1 scrollbar-thin scrollbar-thumb-neutral/40 scrollbar-track-transparent">
+            <div className="flex flex-col items-center gap-6 sm:flex-row sm:overflow-x-auto sm:pb-8 sm:pt-4 px-2 scrollbar-thin scrollbar-thumb-neutral/40 scrollbar-track-transparent">
               {filteredIndividuals.map((course) => (
                 <CourseCard key={course.id} {...course} />
               ))}
@@ -309,7 +309,7 @@ export default function HomePage() {
               📭 ไม่พบคอร์สเรียนในหมวดหมู่นี้
             </div>
           ) : (
-            <div className="flex flex-col items-center gap-6 sm:flex-row sm:overflow-x-auto sm:pb-4 pt-1 scrollbar-thin scrollbar-thumb-neutral/40 scrollbar-track-transparent">
+            <div className="flex flex-col items-center gap-6 sm:flex-row sm:overflow-x-auto sm:pb-8 sm:pt-4 px-2 scrollbar-thin scrollbar-thumb-neutral/40 scrollbar-track-transparent">
               {filteredStudents.map((course) => (
                 <CourseCard key={course.id} {...course} />
               ))}
@@ -338,7 +338,7 @@ export default function HomePage() {
               📭 ไม่พบคอร์สเรียนในหมวดหมู่นี้
             </div>
           ) : (
-            <div className="flex flex-col items-center gap-6 sm:flex-row sm:overflow-x-auto sm:pb-4 pt-1 scrollbar-thin scrollbar-thumb-neutral/40 scrollbar-track-transparent">
+            <div className="flex flex-col items-center gap-6 sm:flex-row sm:overflow-x-auto sm:pb-8 sm:pt-4 px-2 scrollbar-thin scrollbar-thumb-neutral/40 scrollbar-track-transparent">
               {filteredTeachers.map((course) => (
                 <CourseCard key={course.id} {...course} />
               ))}
