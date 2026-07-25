@@ -266,7 +266,7 @@ export default function HomePage() {
               <span className="px-2.5 py-0.5 rounded-md bg-accent text-white text-xs font-bold uppercase tracking-wide">
                 NEW
               </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-secondary tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-semibold text-secondary tracking-tight">
                 For Individuals
               </h2>
             </div>
@@ -295,7 +295,7 @@ export default function HomePage() {
               <span className="px-2.5 py-0.5 rounded-md bg-accent text-white text-xs font-bold uppercase tracking-wide">
                 NEW
               </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-secondary tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-semibold text-secondary tracking-tight">
                 For Students
               </h2>
             </div>
@@ -324,7 +324,7 @@ export default function HomePage() {
               <span className="px-2.5 py-0.5 rounded-md bg-accent text-white text-xs font-bold uppercase tracking-wide">
                 NEW
               </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-secondary tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-semibold text-secondary tracking-tight">
                 For Teachers
               </h2>
             </div>

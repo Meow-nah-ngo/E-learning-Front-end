@@ -72,7 +72,7 @@ export default function CourseCard({
       if (remaining < 5) {
         return {
           text: `${remaining} ที่นั่ง`,
-          colorClass: "text-warning font-bold",
+          colorClass: "text-warning font-semibold",
           icon: <AlertCircle className="w-4 h-4 shrink-0 text-warning" />,
         };
       }
@@ -114,27 +114,27 @@ export default function CourseCard({
 
       <div className="flex flex-col gap-6 flex-grow">
         {/* Title */}
-        <h3 className="text-xl font-bold text-secondary leading-snug line-clamp-2">
+        <h3 className="text-xl font-semibold text-secondary leading-snug line-clamp-2">
           {title}
         </h3>
         
         {/* Badges Row */}
         <div className="flex items-center gap-2 flex-wrap">
           {/* Main Code Badge (Red) */}
-          <span className="inline-flex items-center px-3 py-1 rounded-[6px] bg-primary text-white text-[13px] font-semibold select-none">
+          <span className="inline-flex items-center px-3 py-1 rounded-[6px] bg-primary text-white text-[13px] font-medium select-none">
             {code}
           </span>
 
           {/* Optional Grade Level Badge (Red, e.g. ม.1, ม.2, ม.3) */}
           {gradeLevel && (
-            <span className="inline-flex items-center px-3 py-1 rounded-[6px] bg-primary text-white text-[13px] font-semibold select-none">
+            <span className="inline-flex items-center px-3 py-1 rounded-[6px] bg-primary text-white text-[13px] font-medium select-none">
               {gradeLevel}
             </span>
           )}
           
           {/* Optional Benefit Badge (Yellow) */}
           {benefit && (
-            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-[6px] bg-benefit text-white text-[13px] font-semibold select-none">
+            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-[6px] bg-benefit text-white text-[13px] font-medium select-none">
               {renderBenefitIcon()}
               {benefit}
             </span>
@@ -142,7 +142,7 @@ export default function CourseCard({
 
           {/* Rating or Instructor on the Right */}
           {rating !== undefined ? (
-            <div className="ml-auto flex items-center gap-1 text-sm font-bold text-secondary">
+            <div className="ml-auto flex items-center gap-1 text-sm font-semibold text-secondary">
               <Star className="w-4 h-4 text-secondary fill-secondary shrink-0" />
               <span>{rating}</span>
               {reviewCount !== undefined && <span className="text-secondary/70 font-normal">({reviewCount})</span>}
@@ -156,7 +156,7 @@ export default function CourseCard({
       </div>
 
       {/* 3. Bottom-Aligned Footer Section (Push to bottom using mt-auto) */}
-      <div className="flex items-center justify-between text-sm font-semibold mt-auto pt-6 border-t border-neutral/30">
+      <div className="flex items-center justify-between text-sm font-medium mt-auto pt-6 border-t border-neutral/30">
         {/* Date Info */}
         <div className="flex items-center gap-1.5 text-description-light">
           <Clock className="w-4 h-4 text-description-light shrink-0" />
