@@ -1,5 +1,6 @@
 import React from "react";
 import { Crown, GraduationCap, Clock, User, Star, AlertCircle } from "lucide-react";
+import Badge from "./Badge";
 
 export interface CourseCardProps {
   imageUrl: string;
@@ -127,17 +128,29 @@ export default function CourseCard({
 
           {/* Optional Grade Level Badge (Red, e.g. ม.1, ม.2, ม.3) */}
           {gradeLevel && (
-            <span className="inline-flex items-center px-3 py-1 rounded-[6px] bg-primary text-white text-[13px] font-medium select-none">
+            <Badge
+              variant="fill"
+              color="primary"
+              shape="square"
+              size="small"
+              className="font-medium px-4 py-1.5 bg-primary text-white"
+            >
               {gradeLevel}
-            </span>
+            </Badge>
           )}
           
           {/* Optional Benefit Badge (Yellow) */}
           {benefit && (
-            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-[6px] bg-benefit text-white text-[13px] font-medium select-none">
+            <Badge
+              variant="fill"
+              color="benefit"
+              shape="square"
+              size="small"
+              className="font-medium px-4 py-1.5 bg-benefit text-white"
+            >
               {renderBenefitIcon()}
               {benefit}
-            </span>
+            </Badge>
           )}
 
           {/* Rating or Instructor on the Right */}
