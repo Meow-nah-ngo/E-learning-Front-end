@@ -84,8 +84,24 @@ export default function Badge({
   // Hover background for close button
   const closeBtnHover = variant === "fill" ? "hover:bg-white/20" : "hover:bg-black/10";
 
+  const isClickable = !!props.onClick;
+
   return (
     <span
+      role={isClickable ? "button" : undefined}
+      tabIndex={isClickable ? 0 : undefined}
+      onKeyDown={
+        isClickable
+          ? (e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                if (props.onClick) {
+                  (props.onClick as any)(e);
+                }
+              }
+            }
+          : undefined
+      }
       className={`${base} ${sizes} ${shapes} ${variantClass} ${flexDir} gap-xs ${className}`}
       {...props}
     >
