@@ -169,7 +169,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
                 </div>
                 <div className="text-center sm:text-left space-y-1">
                   <h3 className="font-semibold text-secondary text-lg">
-                    {course.instructor || "คุณครูโรงเรียนสตรีวิทยา (Satriwit Faculty)"} {/* Instructor profiles NEED API */}
+                    {course.instructor || "ไม่พบข้อมูล"} {/* Instructor profiles NEED API */}
                   </h3>
                   <p className="text-xs text-description-light font-medium">ครูผู้เชี่ยวชาญการจัดการเรียนรู้ประจำกลุ่มสาระ</p> {/* Instructor profiles NEED API */}
                   <p className="text-sm text-secondary/80 font-sans leading-relaxed mt-2"> {/* Instructor profiles NEED API */}
@@ -201,7 +201,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
                 <div className="flex justify-between items-center text-sm font-medium">
                   <span className="text-description-light">สถานะคอร์สเรียน:</span>
                   {isFull ? (
-                    <span className="text-primary font-semibold flex items-center gap-1">
+                    <span className="text-primary-tint font-semibold flex items-center gap-1">
                       <AlertCircle className="w-4 h-4" />
                       คอร์สเต็ม
                     </span>
@@ -243,34 +243,34 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
                 disabled={isFull}
                 onClick={() => {
                   if (!isFull) {
-                    alert("ลงทะเบียนเข้าสู่บทเรียนสตรีวิทยาสำเร็จ! ยินดีต้อนรับครับ 🎉");
+                    alert("ลงทะเบียนเข้าสู่บทเรียนสำเร็จ");
                   }
                 }}
               >
                 {isFull ? "คอร์สเรียนปิดรับสมัครแล้ว" : "ลงทะเบียนเข้าสู่ระบบ"}
               </Button>
 
-              {/* Course Key parameters details list */}
+              {/* Course Key parameters details list */} {/* NEED API */}
               <div className="space-y-3.5 text-sm pt-2">
-                
+                {/* NEED API */}
                 <div className="flex items-center gap-3">
                   <Clock className="w-4 h-4 text-description-light shrink-0" />
                   <span className="text-secondary/70">ระยะเวลา: <strong className="text-secondary font-semibold">12 ชั่วโมงการเรียนรู้</strong></span>
                 </div>
-
+                {/* NEED API */} 
                 <div className="flex items-center gap-3">
                   <User className="w-4 h-4 text-description-light shrink-0" />
-                  <span className="text-secondary/70">ผู้บรรยายหลัก: <strong className="text-secondary font-semibold">{course.instructor || "คุณครูโรงเรียนสตรีวิทยา"}</strong></span>
+                  <span className="text-secondary/70">ผู้บรรยายหลัก: <strong className="text-secondary font-semibold">{course.instructor || "ไม่พบข้อมูล"}</strong></span>
                 </div>
-
+                {/* NEED API */}
                 <div className="flex items-center gap-3">
                   <BookOpen className="w-4 h-4 text-description-light shrink-0" />
-                  <span className="text-secondary/70">สิทธิ์ผู้เข้าเรียน: <strong className="text-secondary font-semibold">{course.gradeLevel ? `ระดับ ${course.gradeLevel}` : "ทุกคนที่สนใจ"}</strong></span>
+                  <span className="text-secondary/70">สิทธิ์ผู้เข้าเรียน: <strong className="text-secondary font-semibold">{course.gradeLevel ? `ระดับ ${course.gradeLevel}` : "ทุกคน"}</strong></span>
                 </div>
-
+                {/* NEED API */}
                 <div className="flex items-center gap-3">
                   <Award className="w-4 h-4 text-description-light shrink-0" />
-                  <span className="text-secondary/70">ใบรับรอง (Certificate): <strong className="text-secondary font-semibold">{course.benefit ? `ได้รับแบบ ${course.benefit}` : "ได้รับหลังเรียนจบ"}</strong></span>
+                  <span className="text-secondary/70">ใบรับรอง (Certificate): <strong className="text-secondary font-semibold">{course.benefit ? `${course.benefit}` : "ได้รับหลังเรียนจบ"}</strong></span>
                 </div>
 
               </div>
