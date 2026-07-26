@@ -8,7 +8,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-md border-b border-neutral font-sans text-white sticky">
+    <header className="md:top-0 md:left-0 md:right-0 md:sticky z-50 bg-black/50 backdrop-blur-md border-b border-neutral font-sans text-white">
       <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         
         {/* Brand Logo */}
@@ -58,7 +58,7 @@ export default function Navbar() {
 
       {/* Mobile Navigation Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-secondary/95 backdrop-blur-lg border-b border-white/10 px-4 pt-4 pb-6 space-y-4 animate-in fade-in slide-in-from-top-4 duration-200">
+        <div className="md:hidden bg-black/1 backdrop-blur-lg border-b border-white/50 px-4 pt-4 pb-6 space-y-4 animate-in fade-in slide-in-from-top-4 duration-200">
           <div className="space-y-2">
             <button className="w-full flex justify-between items-center py-2 text-white/90 font-medium border-b border-white/10">
               <span>Classes</span>
