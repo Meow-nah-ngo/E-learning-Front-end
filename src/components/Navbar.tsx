@@ -25,6 +25,13 @@ const learnerTypeItems = [
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Single active state to coordinate all dropdowns (Open one, close others)
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+
+  const handleToggle = (name: string) => {
+    setActiveDropdown((prev) => (prev === name ? null : name));
+  };
+
   return (
     <header className="md:top-0 md:left-0 md:right-0 md:sticky z-50 bg-black/50 backdrop-blur-md border-b border-neutral font-sans text-white">
       <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
@@ -38,9 +45,24 @@ export default function Navbar() {
 
         {/* Desktop Navigation Links */}
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-white/90">
-          <Dropdown title="Classes" items={classItems} />
-          <Dropdown title="Category" items={categoryItems} />
-          <Dropdown title="Learner Type" items={learnerTypeItems} />
+          <Dropdown
+            title="Classes"
+            items={classItems}
+            isOpen={activeDropdown === "classes"}
+            onToggle={() => handleToggle("classes")}
+          />
+          <Dropdown
+            title="Category"
+            items={categoryItems}
+            isOpen={activeDropdown === "category"}
+            onToggle={() => handleToggle("category")}
+          />
+          <Dropdown
+            title="Learner Type"
+            items={learnerTypeItems}
+            isOpen={activeDropdown === "learnerType"}
+            onToggle={() => handleToggle("learnerType")}
+          />
         </nav>
 
         {/* Right Auth Buttons */}
@@ -55,7 +77,10 @@ export default function Navbar() {
 
         {/* Mobile Menu Button */}
         <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          onClick={() => {
+            setMobileMenuOpen(!mobileMenuOpen);
+            setActiveDropdown(null); // Clear dropdowns when opening/closing drawer
+          }}
           className="md:hidden p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
           aria-label="Toggle Navigation Menu"
         >
@@ -63,13 +88,31 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Navigation Drawer (using unified Dropdown component) */}
+      {/* Mobile Navigation Drawer */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-secondary/95 backdrop-blur-lg border-b border-white/10 px-4 pt-4 pb-6 space-y-4 animate-in fade-in slide-in-from-top-4 duration-200">
           <div className="space-y-1">
-            <Dropdown title="Classes" items={classItems} variant="mobile" />
-            <Dropdown title="Category" items={categoryItems} variant="mobile" />
-            <Dropdown title="Learner Type" items={learnerTypeItems} variant="mobile" />
+            <Dropdown
+              title="Classes"
+              items={classItems}
+              variant="mobile"
+              isOpen={activeDropdown === "classes-mobile"}
+              onToggle={() => handleToggle("classes-mobile")}
+            />
+            <Dropdown
+              title="Category"
+              items={categoryItems}
+              variant="mobile"
+              isOpen={activeDropdown === "category-mobile"}
+              onToggle={() => handleToggle("category-mobile")}
+            />
+            <Dropdown
+              title="Learner Type"
+              items={learnerTypeItems}
+              variant="mobile"
+              isOpen={activeDropdown === "learnerType-mobile"}
+              onToggle={() => handleToggle("learnerType-mobile")}
+            />
           </div>
 
           {/* Auth Buttons */}
