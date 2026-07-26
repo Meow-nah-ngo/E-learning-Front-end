@@ -15,7 +15,7 @@ export interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonE
 export default function Button({
   type = 'primary', shape = 'standard', size = 'medium',
   danger = false, ghost = false, loading = false, disabled = false,
-  icon, title, className = '', onClick, htmlType = 'button', ...props
+  children, icon, title, className = '', onClick, htmlType = 'button', ...props
 }: ButtonProps) {
 
   const base = "inline-flex items-center justify-center font-normal transition-all duration-200 cursor-pointer select-none disabled:opacity-50 disabled:pointer-events-none";
@@ -73,8 +73,9 @@ export default function Button({
           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
         </svg>
       )}
-      {icon && !loading && <span className={title ? "mr-1.5 inline-flex items-center" : "inline-flex items-center"}>{icon}</span>}
+      {icon && !loading && <span className={(title || children) ? "mr-1.5 inline-flex items-center" : "inline-flex items-center"}>{icon}</span>}
       {title && <span>{title}</span>}
+      {children}
     </button>
   );
 }
