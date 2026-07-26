@@ -1,22 +1,14 @@
-export interface Course {
+import { CourseCardProps } from "@/components/CourseCard";
+
+export interface CourseItem extends CourseCardProps {
   id: string;
-  imageUrl: string;
-  title: string;
-  code: string;
-  benefit: string;
-  benefitType: "certificate" | "diploma" | "none";
-  rating: number;
-  reviewCount: number;
-  date: string;
-  seatsOrStatus: string;
-  isFull: boolean;
   subject: string;
 }
 
-export const mockCourses: Course[] = [
+export const individualCourses: CourseItem[] = [
   {
-    id: "1",
-    imageUrl: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=600&auto=format&fit=crop",
+    id: "ind-1",
+    imageUrl: "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=600&auto=format&fit=crop",
     title: "Creative Writing",
     code: "SW20246",
     benefit: "Certificate",
@@ -26,10 +18,10 @@ export const mockCourses: Course[] = [
     date: "17 สิงหาคม 2569",
     seatsOrStatus: "คอร์สเต็ม",
     isFull: true,
-    subject: "Computer Science"
+    subject: "Computer Science",
   },
   {
-    id: "2",
+    id: "ind-2",
     imageUrl: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600&auto=format&fit=crop",
     title: "Digital Marketing",
     code: "DM30112",
@@ -38,36 +30,140 @@ export const mockCourses: Course[] = [
     rating: 4.6,
     reviewCount: 58,
     date: "12 กันยายน 2569",
-    seatsOrStatus: "2,500 ที่นั่ง",
-    isFull: false,
-    subject: "Computer Science"
+    registeredSeats: 500,
+    maxSeats: 3000,
+    subject: "Computer Science",
   },
   {
-    id: "3",
-    imageUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=600&auto=format&fit=crop",
-    title: "Quantum Mechanics & Astrophysics",
-    code: "PH20311",
+    id: "ind-3",
+    imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600&auto=format&fit=crop",
+    title: "Data Science Fundamentals",
+    code: "DS10101",
     benefit: "Certificate",
     benefitType: "certificate",
     rating: 4.9,
     reviewCount: 120,
-    date: "25 ตุลาคม 2569",
-    seatsOrStatus: "120 ที่นั่ง",
-    isFull: false,
-    subject: "Physics"
+    date: "5 มกราคม 2570",
+    registeredSeats: 1000,
+    maxSeats: 4000,
+    subject: "Statistics",
   },
   {
-    id: "4",
-    imageUrl: "https://images.unsplash.com/photo-1532187863486-abf9d39d66e8?q=80&w=600&auto=format&fit=crop",
-    title: "Organic Chemistry Laboratory",
-    code: "CH10202",
+    id: "ind-4",
+    imageUrl: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?q=80&w=600&auto=format&fit=crop",
+    title: "Photography Basics",
+    code: "PH10001",
     benefit: "Certificate",
     benefitType: "certificate",
-    rating: 4.5,
+    rating: 4.7,
     reviewCount: 45,
-    date: "5 พฤศจิกายน 2569",
+    date: "20 มกราคม 2570",
+    registeredSeats: 50,
+    maxSeats: 200,
+    subject: "Art",
+  },
+];
+
+export const studentCourses: CourseItem[] = [
+  {
+    id: "std-1",
+    imageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=600&auto=format&fit=crop",
+    title: "Innovative Strategies in Tech Development",
+    code: "คณิตศาสตร์ 10123",
+    gradeLevel: "ม.1",
+    instructor: "ครูพินิจกุล",
+    date: "23 สิงหาคม 2569",
     seatsOrStatus: "คอร์สเต็ม",
     isFull: true,
-    subject: "Chemistry"
-  }
+    subject: "Engineering",
+  },
+  {
+    id: "std-2",
+    imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop",
+    title: "Sustainable Growth through Economic Marketing",
+    code: "คณิตศาสตร์ 10123",
+    gradeLevel: "ม.1",
+    instructor: "ครูพินิจกุล",
+    date: "12 กันยายน 2569",
+    registeredSeats: 500,
+    maxSeats: 2000,
+    subject: "Computer Science",
+  },
+  {
+    id: "std-3",
+    imageUrl: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=600&auto=format&fit=crop",
+    title: "Innovative Strategies for Digital Engagement",
+    code: "วิทยาศาสตร์ 20245",
+    gradeLevel: "ม.2",
+    instructor: "ครูสมชาย",
+    date: "5 มกราคม 2570",
+    registeredSeats: 800,
+    maxSeats: 2000,
+    subject: "Computer Science",
+  },
+  {
+    id: "std-4",
+    imageUrl: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=600&auto=format&fit=crop",
+    title: "Creative Problem Solving in UI/UX Design",
+    code: "ศิลปะ 30567",
+    gradeLevel: "ม.3",
+    instructor: "ครูพิชญา",
+    date: "17 สิงหาคม 2569",
+    registeredSeats: 96,
+    maxSeats: 100,
+    subject: "Computer Science",
+  },
+];
+
+export const teacherCourses: CourseItem[] = [
+  {
+    id: "tch-1",
+    imageUrl: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=600&auto=format&fit=crop",
+    title: "Innovative Teaching Strategies for Modern Classrooms",
+    code: "การสอนสำหรับครู SW20234",
+    benefitType: "none",
+    date: "5 ตุลาคม 2569",
+    registeredSeats: 96,
+    maxSeats: 100,
+    subject: "Engineering",
+  },
+  {
+    id: "tch-2",
+    imageUrl: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=600&auto=format&fit=crop",
+    title: "Advanced Mathematics Tutoring",
+    code: "การจัดการเรียนรู้การสอนวิชาคณิตศาสตร์ขั้นสูง MATH205",
+    benefitType: "none",
+    date: "10 มกราคม 2570",
+    registeredSeats: 30,
+    maxSeats: 100,
+    subject: "Statistics",
+  },
+  {
+    id: "tch-3",
+    imageUrl: "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=600&auto=format&fit=crop",
+    title: "Creative Writing Seminar",
+    code: "สัมมนาการเขียนเชิงสร้างสรรค์ ENG102",
+    benefitType: "none",
+    date: "22 มกราคม 2570",
+    registeredSeats: 25,
+    maxSeats: 100,
+    subject: "Computer Science",
+  },
+  {
+    id: "tch-4",
+    imageUrl: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=600&auto=format&fit=crop",
+    title: "Physics Experiment Design",
+    code: "ห้องปฏิบัติการฟิสิกส์ LAB401",
+    benefitType: "none",
+    date: "15 มกราคม 2570",
+    registeredSeats: 30,
+    maxSeats: 100,
+    subject: "Physics",
+  },
+];
+
+export const mockCourses: CourseItem[] = [
+  ...individualCourses,
+  ...studentCourses,
+  ...teacherCourses
 ];

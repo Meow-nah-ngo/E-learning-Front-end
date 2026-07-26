@@ -8,12 +8,12 @@ import SearchBar from "@/components/SearchBar";
 import Badge from "@/components/Badge";
 import CourseCard from "@/components/CourseCard";
 import {
-  subjectList,
   individualCourses,
   studentCourses,
   teacherCourses,
   CourseItem
-} from "@/data/courses";
+} from "@/app/api/mock-data/courses";
+import { mockSubjects } from "@/app/api/mock-data/subjects";
 
 export default function HomePage() {
   const [searchValue, setSearchValue] = useState("");
@@ -64,7 +64,7 @@ export default function HomePage() {
             All Subjects
           </Badge>
 
-          {subjectList.map((subj) => {
+          {mockSubjects.map((subj) => {
             const isSelected = selectedSubject === subj;
             return (
               <Badge
