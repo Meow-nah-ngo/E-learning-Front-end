@@ -128,7 +128,6 @@ export default function Navbar() {
             <a
               href="https://sw3.moodiy.school/my/"
               className="text-white hover:text-white/80 text-sm font-semibold w-full flex items-center justify-center py-2.5"
-              style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%" }}
             >
               Log in
             </a>
