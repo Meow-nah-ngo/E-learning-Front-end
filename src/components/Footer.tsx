@@ -9,7 +9,7 @@ export default function Footer() {
           
           <div className="lg:col-span-5 space-y-6">
             <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-secondary leading-tight tracking-tight">
-              Join Satriwit E-Learning Community Today!
+              Join Satriwit3 E-Learning Community Today!
             </h2>
             <button className="cursor-pointer w-full sm:w-auto px-10 py-3.5 rounded-xl bg-primary hover:bg-primary-tint text-white text-base font-bold shadow-md transition-all duration-200 active:scale-95">
               Sign Up Now

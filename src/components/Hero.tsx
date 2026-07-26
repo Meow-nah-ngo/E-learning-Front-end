@@ -26,7 +26,7 @@ export default function Hero() {
         {/* Heading & Subtitle */}
         <div className="space-y-3 sm:space-y-4 x">
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight drop-shadow-md">
-            Empower Your Learning Journey with Satriwit E-Learning
+            Empower Your Learning Journey with Satriwit3 E-Learning
           </h1>
           <p className="text-base sm:text-xl text-white/80 font-normal tracking-wide max-w-full mx-auto">
             Discover a world of knowledge at your fingertips. Explore our diverse range of courses and enhance your skills anytime, anywhere.

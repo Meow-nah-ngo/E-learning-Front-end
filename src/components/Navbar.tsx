@@ -41,7 +41,7 @@ export default function Navbar() {
           <a
             href="/"
             className="text-xl sm:text-2xl font-extrabold tracking-tight text-white select-none">
-            Satriwit E-Learning
+            Satriwit3 E-Learning
           </a>
         </div>
 
