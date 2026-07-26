@@ -2,7 +2,25 @@
 
 import React, { useState } from "react";
 import Button from "./Button";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import Dropdown from "./Dropdown";
+
+const classItems = [
+  { label: "Physics", href: "#" },
+  { label: "Chemistry", href: "#" },
+  { label: "Biology", href: "#" }
+];
+
+const categoryItems = [
+  { label: "For Individuals", href: "#" },
+  { label: "For Students", href: "#" },
+  { label: "For Teachers", href: "#" }
+];
+
+const learnerTypeItems = [
+  { label: "Self-paced", href: "#" },
+  { label: "Live Class", href: "#" }
+];
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -20,20 +38,9 @@ export default function Navbar() {
 
         {/* Desktop Navigation Links */}
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-white/90">
-          <button className="flex items-center gap-1.5 hover:text-white transition-colors duration-150 py-2">
-            <span>Classes</span>
-            <ChevronDown className="w-4 h-4 opacity-80" />
-          </button>
-
-          <button className="flex items-center gap-1.5 hover:text-white transition-colors duration-150 py-2">
-            <span>Category</span>
-            <ChevronDown className="w-4 h-4 opacity-80" />
-          </button>
-
-          <button className="flex items-center gap-1.5 hover:text-white transition-colors duration-150 py-2">
-            <span>Learner Type</span>
-            <ChevronDown className="w-4 h-4 opacity-80" />
-          </button>
+          <Dropdown title="Classes" items={classItems} />
+          <Dropdown title="Category" items={categoryItems} />
+          <Dropdown title="Learner Type" items={learnerTypeItems} />
         </nav>
 
         {/* Right Auth Buttons */}
@@ -56,24 +63,16 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Navigation Drawer */}
+      {/* Mobile Navigation Drawer (using unified Dropdown component) */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-black/1 backdrop-blur-lg border-b border-white/50 px-4 pt-4 pb-6 space-y-4 animate-in fade-in slide-in-from-top-4 duration-200">
-          <div className="space-y-2">
-            <button className="w-full flex justify-between items-center py-2 text-white/90 font-medium border-b border-white/10">
-              <span>Classes</span>
-              <ChevronDown className="w-4 h-4" />
-            </button>
-            <button className="w-full flex justify-between items-center py-2 text-white/90 font-medium border-b border-white/10">
-              <span>Category</span>
-              <ChevronDown className="w-4 h-4" />
-            </button>
-            <button className="w-full flex justify-between items-center py-2 text-white/90 font-medium border-b border-white/10">
-              <span>Learner Type</span>
-              <ChevronDown className="w-4 h-4" />
-            </button>
+        <div className="md:hidden bg-secondary/95 backdrop-blur-lg border-b border-white/10 px-4 pt-4 pb-6 space-y-4 animate-in fade-in slide-in-from-top-4 duration-200">
+          <div className="space-y-1">
+            <Dropdown title="Classes" items={classItems} variant="mobile" />
+            <Dropdown title="Category" items={categoryItems} variant="mobile" />
+            <Dropdown title="Learner Type" items={learnerTypeItems} variant="mobile" />
           </div>
 
+          {/* Auth Buttons */}
           <div className="pt-2 flex flex-col gap-3">
             <Button type="text" className="w-full justify-center text-white font-semibold">
               Log in
