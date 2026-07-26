@@ -38,9 +38,11 @@ export default function Navbar() {
         
         {/* Brand Logo */}
         <div className="flex items-center gap-2">
-          <span className="text-xl sm:text-2xl font-extrabold tracking-tight text-white select-none">
+          <a
+            href="/"
+            className="text-xl sm:text-2xl font-extrabold tracking-tight text-white select-none">
             Satriwit E-Learning
-          </span>
+          </a>
         </div>
 
         {/* Desktop Navigation Links */}
@@ -68,7 +70,7 @@ export default function Navbar() {
         {/* Right Auth Buttons */}
         <div className="hidden md:flex items-center gap-4">
           <a
-            href="https://sw3.moodiy.school/login/index.php"
+            href="https://sw3.moodiy.school/my/"
             className="text-white hover:text-white/80 text-sm font-semibold"
           >
             Log in
