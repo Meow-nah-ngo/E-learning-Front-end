@@ -17,7 +17,7 @@ import {
 export default function CourseDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
 
-  // Combine all mock data to search for the specific course
+  // Combine
   const allCourses: CourseItem[] = [
     ...individualCourses,
     ...studentCourses,
@@ -26,7 +26,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
   
   const course = allCourses.find((c) => c.id === id);
 
-  // Handle case where course is not found
+  // Handle case where course is not found 404
   if (!course) {
     return (
       <div className="min-h-screen bg-light-2 font-sans flex flex-col">
@@ -35,9 +35,9 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
           <div className="bg-white rounded-3xl p-8 max-w-md shadow-md border border-neutral/30 space-y-4">
             <AlertCircle className="w-12 h-12 text-primary mx-auto" />
             <h2 className="text-2xl font-semibold text-secondary">ไม่พบคอร์สเรียน</h2>
-            <p className="text-description-light text-sm">ขออภัยด้วยครับ ไม่พบคอร์สเรียนที่ตรงกับรหัสวิชาที่คุณค้นหาในขณะนี้</p>
+            <p className="text-description-light text-sm">ขออภัย ไม่พบคอร์สเรียนที่ตรงกับรหัสวิชาที่คุณค้นหาในขณะนี้</p>
             <Link href="/" className="inline-block mt-4">
-              <Button type="primary" className="rounded-full px-6">
+              <Button type="primary" className="rounded-full px-6 text-white">
                 กลับหน้าหลัก
               </Button>
             </Link>
@@ -82,15 +82,15 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
             {/* Header section */}
             <div className="space-y-3">
               <div className="flex items-center gap-2.5 flex-wrap">
-                <span className="inline-flex items-center px-3 py-1 rounded-[6px] bg-primary text-white text-xs font-semibold select-none">
+                <Badge variant="fill" color="primary" shape="square" size="medium" className="font-base">
                   {course.code}
-                </span>
+                </Badge>
                 {course.gradeLevel && (
-                  <Badge variant="fill" color="primary" shape="square" size="small" className="font-semibold">
+                  <Badge variant="fill" color="primary" shape="square" size="medium" className="font-base">
                     {course.gradeLevel}
                   </Badge>
                 )}
-                <Badge variant="outline" color="primary" shape="pill" size="small" className="font-semibold">
+                <Badge variant="outline" color="primary" shape="pill" size="medium" className="font-base">
                   {course.subject}
                 </Badge>
               </div>
