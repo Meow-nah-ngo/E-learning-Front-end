@@ -126,17 +126,17 @@ export default function Navbar() {
           {/* Auth Buttons */}
           <div className="pt-2 flex flex-col gap-3">
             <a
-            href="https://sw3.moodiy.school/my/"
-            className="text-white hover:text-white/80 text-sm font-semibold"
-          >
-            Log in
-          </a>
-          <a
-            href="https://sw3.moodiy.school/login/index.php"
-            className="inline-flex items-center justify-center rounded-full px-6 py-2 bg-primary hover:bg-primary-tint text-white text-sm font-bold shadow-md"
-          >
-            Sign Up
-          </a>
+              href="https://sw3.moodiy.school/my/"
+              className="text-white hover:text-white/80 text-sm font-semibold w-full flex items-center justify-center py-2.5"
+            >
+              Log in
+            </a>
+            <a
+              href="https://sw3.moodiy.school/login/index.php"
+              className="w-full inline-flex items-center justify-center rounded-full py-2.5 bg-primary hover:bg-primary-tint text-white text-sm font-bold shadow-md"
+            >
+              Sign Up
+            </a>
           </div>
         </div>
       )}
