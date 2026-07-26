@@ -20,7 +20,6 @@ export default function Dropdown({ title, items, variant = "desktop" }: Dropdown
   if (variant === "mobile") {
     return (
       <div className="w-full">
-        {/* Trigger */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="w-full flex justify-between items-center py-3 text-white/90 font-medium border-b border-white/10"
@@ -29,7 +28,6 @@ export default function Dropdown({ title, items, variant = "desktop" }: Dropdown
           <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
         </button>
 
-        {/* Content (relative block layout, pushes sibling nodes downward) */}
         {isOpen && (
           <div className="pl-4 pt-2 pb-3 space-y-2 animate-in fade-in slide-in-from-top-1 duration-150">
             {items.map((item, index) => (
@@ -51,16 +49,15 @@ export default function Dropdown({ title, items, variant = "desktop" }: Dropdown
   // 2. Desktop Overlay Variant (Default)
   return (
     <div className="relative inline-block text-left">
-      {/* Trigger */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-1 hover:text-white/80 transition-colors duration-150 py-2"
+        className="flex items-center gap-1 hover:text-neutral transition-colors duration-200 py-2"
       >
         <span>{title}</span>
         <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
       </button>
 
-      {/* Content (absolute overlay layout) */}
+
       {isOpen && (
         <div className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 text-black z-50">
           {items.map((item, index) => (
