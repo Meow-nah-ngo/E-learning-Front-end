@@ -127,6 +127,8 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
                 <BookOpen className="w-5 h-5 text-primary" />
                 <span>คำอธิบายรายวิชา (About this Course)</span>
               </h2>
+
+              {/* Description text NEED API */}
               <p className="text-secondary/80 text-[15px] leading-relaxed font-sans">
                 คอร์สเรียนนี้จะพาทุกคนไปเรียนรู้อย่างละเอียด เจาะลึกแบบลงมือทำจริง (Hands-on) โดยมีคุณครูผู้เชี่ยวชาญคอยดูแลตลอดหลักสูตร
                 เหมาะสำหรับปูพื้นฐาน พัฒนาทักษะของตนเองอย่างมีทิศทาง ตลอดจนนำไปประยุกต์ใช้เพื่อยกระดับผลการเรียนและการทำงาน
@@ -138,6 +140,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
             <div className="space-y-4 bg-white rounded-3xl p-6 sm:p-8 border border-neutral/30 shadow-xs">
               <h2 className="text-xl sm:text-2xl font-semibold text-secondary">สิ่งที่คุณจะได้รับจากคอร์สนี้</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                {/* Objectives text NEED API */}
                 {[
                   "ปูพื้นฐานความรู้จากระดับเริ่มต้นไปจนถึงระดับสูง",
                   "เข้าใจตรรกะเบื้องหลังและการทำงานอย่างถูกทิศทาง",
@@ -154,7 +157,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
               </div>
             </div>
 
-            {/* Instructor profiles */}
+            {/* Instructor profiles NEED API */}
             <div className="space-y-4 bg-white rounded-3xl p-6 sm:p-8 border border-neutral/30 shadow-xs">
               <h2 className="text-xl sm:text-2xl font-semibold text-secondary flex items-center gap-2">
                 <User className="w-5 h-5 text-primary" />
@@ -166,10 +169,10 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
                 </div>
                 <div className="text-center sm:text-left space-y-1">
                   <h3 className="font-semibold text-secondary text-lg">
-                    {course.instructor || "คุณครูโรงเรียนสตรีวิทยา (Satriwit Faculty)"}
+                    {course.instructor || "คุณครูโรงเรียนสตรีวิทยา (Satriwit Faculty)"} {/* Instructor profiles NEED API */}
                   </h3>
-                  <p className="text-xs text-description-light font-medium">ครูผู้เชี่ยวชาญการจัดการเรียนรู้ประจำกลุ่มสาระ</p>
-                  <p className="text-sm text-secondary/80 font-sans leading-relaxed mt-2">
+                  <p className="text-xs text-description-light font-medium">ครูผู้เชี่ยวชาญการจัดการเรียนรู้ประจำกลุ่มสาระ</p> {/* Instructor profiles NEED API */}
+                  <p className="text-sm text-secondary/80 font-sans leading-relaxed mt-2"> {/* Instructor profiles NEED API */}
                     มีประสบการณ์ในการถ่ายทอดและพัฒนาศักยภาพผู้เรียนมากกว่า 10 ปี เน้นการสอนให้ผู้เรียนเห็นภาพ ปูรากฐานแน่น
                     และแก้โจทย์ปัญหาได้อย่างสร้างสรรค์
                   </p>
