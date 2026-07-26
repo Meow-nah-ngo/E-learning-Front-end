@@ -57,7 +57,7 @@ export default function HomePage() {
             variant={selectedSubject === null ? "fill" : "outline"}
             color="primary"
             shape="pill"
-            size="medium"
+            size="large"
             className="cursor-pointer font-medium px-4 py-1.5 hover:bg-primary hover:text-white transition-all duration-200"
             onClick={() => setSelectedSubject(null)}
           >
@@ -72,7 +72,7 @@ export default function HomePage() {
                 variant={isSelected ? "fill" : "outline"}
                 color="primary"
                 shape="pill"
-                size="medium"
+                size="large"
                 className="cursor-pointer font-medium px-4 py-1.5 hover:bg-primary hover:text-white transition-all duration-200"
                 onClick={() => setSelectedSubject(isSelected ? null : subj)}
               >

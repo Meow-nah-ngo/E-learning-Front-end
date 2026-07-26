@@ -1,8 +1,10 @@
 import React from "react";
 import { Crown, GraduationCap, Clock, User, Star, AlertCircle } from "lucide-react";
 import Badge from "./Badge";
+import Link from "next/link";
 
 export interface CourseCardProps {
+  id: string;                    // Unique identifier for routing
   imageUrl: string;
   title: string;
   code: string;                 // Main red badge
@@ -21,6 +23,7 @@ export interface CourseCardProps {
 }
 
 export default function CourseCard({
+  id,
   imageUrl,
   title,
   code,
@@ -103,7 +106,7 @@ export default function CourseCard({
   const heightStyle = hasHeight ? "" : "h-[440px]";
 
   return (
-    <div className={`${widthStyle} ${heightStyle} shrink-0 bg-white rounded-[20px] border border-neutral/40 shadow-xs p-6 flex flex-col font-sans cursor-pointer hover:border-primary focus-within:ring-2 hover:ring-primary/10 transition-all duration-200 hover:scale-101 active:scale-102 ${className}`}>
+    <Link href={`/courses/${id}`} className={`${widthStyle} ${heightStyle} shrink-0 bg-white rounded-[20px] border border-neutral/40 shadow-xs p-6 flex flex-col font-sans cursor-pointer hover:border-primary focus-within:ring-2 hover:ring-primary/10 transition-all duration-200 hover:scale-101 active:scale-102 ${className}`}>
       
       <div className="w-full h-[200px] shrink-0 overflow-hidden rounded-[16px] mb-6 bg-neutral/20">
         <img
@@ -183,6 +186,6 @@ export default function CourseCard({
         </div>
       </div>
 
-    </div>
+    </Link>
   );
 }
