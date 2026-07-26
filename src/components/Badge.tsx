@@ -1,6 +1,6 @@
 import React from "react";
 
-export interface BadgeProps extends React.HTMLAttributes<HTMLElement> {
+export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   children?: React.ReactNode;
   variant?: "fill" | "outline" | "soft";
   color?: "primary" | "success" | "benefit" | "warning" | "error" | "info" | "neutral";
@@ -9,7 +9,6 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLElement> {
   iconPosition?: "left" | "right";
   removable?: boolean;
   onRemove?: () => void;
-  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   className?: string; 
 }
 
@@ -22,12 +21,11 @@ export default function Badge({
   iconPosition = "left",
   removable = false,
   onRemove,
-  onClick,
   className = "",
   ...props
 }: BadgeProps) {
   
-  const base = "inline-flex items-center justify-center font-normal transition-all duration-200 select-none focus:outline-none appearance-none border-0";
+  const base = "inline-flex items-center justify-center font-normal transition-all duration-200 select-none";
 
   const sizes = {
     small: "px-xs py-xxs text-xs",
@@ -86,13 +84,8 @@ export default function Badge({
   // Hover background for close button
   const closeBtnHover = variant === "fill" ? "hover:bg-white/20" : "hover:bg-black/10";
 
-  const isClickable = !!onClick;
-  const Component = isClickable ? "button" : "span";
-
   return (
-    <Component
-      type={isClickable ? "button" : undefined}
-      onClick={onClick}
+    <span
       className={`${base} ${sizes} ${shapes} ${variantClass} ${flexDir} gap-xs ${className}`}
       {...props}
     >
@@ -117,6 +110,6 @@ export default function Badge({
           </svg>
         </button>
       )}
-    </Component>
+    </span>
   );
 }

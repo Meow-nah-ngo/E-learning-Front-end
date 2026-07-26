@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
@@ -23,8 +25,30 @@ export default function Dropdown({
   onToggle
 }: DropdownProps) {
   const [localIsOpen, setLocalIsOpen] = useState(false);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
   const isDropdownOpen = controlledIsOpen !== undefined ? controlledIsOpen : localIsOpen;
   const handleToggle = onToggle ? onToggle : () => setLocalIsOpen(!localIsOpen);
+
+  // Close dropdown when clicking outside (Desktop only)
+  React.useEffect(() => {
+    if (!isDropdownOpen || variant === "mobile") return;
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        if (onToggle) {
+          onToggle();
+        } else {
+          setLocalIsOpen(false);
+        }
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isDropdownOpen, onToggle, variant]);
 
   // 1. Mobile Accordion Variant
   if (variant === "mobile") {
@@ -44,7 +68,11 @@ export default function Dropdown({
               <a
                 key={index}
                 href={item.href || "#"}
-                onClick={item.onClick}
+                onClick={() => {
+                  if (item.onClick) item.onClick();
+                  setLocalIsOpen(false);
+                  if (onToggle) onToggle();
+                }}
                 className="block text-sm text-white/70 hover:text-white transition-colors"
               >
                 {item.label}
@@ -58,7 +86,7 @@ export default function Dropdown({
 
   // 2. Desktop Overlay Variant (Default)
   return (
-    <div className="relative inline-block text-left">
+    <div ref={containerRef} className="relative inline-block text-left">
       <button
         onClick={handleToggle}
         className="flex items-center gap-1 hover:text-white/80 transition-colors duration-150 py-2"
@@ -73,7 +101,11 @@ export default function Dropdown({
             <a
               key={index}
               href={item.href || "#"}
-              onClick={item.onClick}
+              onClick={() => {
+                if (item.onClick) item.onClick();
+                setLocalIsOpen(false);
+                if (onToggle) onToggle();
+              }}
               className="block px-4 py-2 hover:bg-neutral/40 text-sm"
             >
               {item.label}

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
@@ -27,9 +27,9 @@ export default function HomePage() {
     return matchesSubject && matchesSearch;
   };
 
-  const filteredIndividuals = individualCourses.filter(matchesFilter);
-  const filteredStudents = studentCourses.filter(matchesFilter);
-  const filteredTeachers = teacherCourses.filter(matchesFilter);
+  const filteredIndividuals = useMemo(() => individualCourses.filter(matchesFilter), [selectedSubject, searchValue]);
+  const filteredStudents = useMemo(() => studentCourses.filter(matchesFilter), [selectedSubject, searchValue]);
+  const filteredTeachers = useMemo(() => teacherCourses.filter(matchesFilter), [selectedSubject, searchValue]);
 
   return (
     <div className="min-h-screen bg-light-2 font-sans flex flex-col selection:bg-primary selection:text-white">
