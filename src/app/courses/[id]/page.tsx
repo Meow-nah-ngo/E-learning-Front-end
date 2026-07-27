@@ -129,7 +129,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
               </h2>
 
               <p className="text-secondary/80 text-[15px] leading-relaxed font-sans whitespace-pre-line">
-                {course.description || "ไม่มีคำอธิบายรายละเอียดสำหรับหลักสูตรนี้"}
+                {course.details?.description || "ไม่มีคำอธิบายรายละเอียดสำหรับหลักสูตรนี้"}
               </p>
             </div>
 
@@ -137,7 +137,12 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
             <div className="space-y-4 bg-white rounded-3xl p-6 sm:p-8 border border-neutral/30 shadow-xs">
               <h2 className="text-xl sm:text-2xl font-semibold text-secondary">สิ่งที่คุณจะได้รับจากคอร์สนี้</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                {(course.objectives || ["ไม่พบข้อมูล"]).map((item, idx) => (
+                {(course.details?.objectives || [
+                  "ปูพื้นฐานความรู้จากระดับเริ่มต้นไปจนถึงระดับสูง",
+                  "เข้าใจตรรกะเบื้องหลังและการทำงานอย่างถูกทิศทาง",
+                  "ทำข้อสอบและแบบฝึกหัดทบทวนบทเรียนพร้อมเฉลยละเอียด",
+                  "รับใบรับรองระบบ (Certificate) ทันทีที่ทำข้อสอบผ่าน",
+                ]).map((item, idx) => (
                   <div key={idx} className="flex items-start gap-2.5 text-sm text-secondary/80">
                     <span className="p-0.5 bg-primary/10 rounded-full text-primary shrink-0 mt-0.5">
                       <Check className="w-4 h-4" />
@@ -148,7 +153,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
               </div>
             </div>
 
-            {/* Instructor profiles NEED API */}
+            {/* Instructor profiles */}
             <div className="space-y-4 bg-white rounded-3xl p-6 sm:p-8 border border-neutral/30 shadow-xs">
               <h2 className="text-xl sm:text-2xl font-semibold text-secondary flex items-center gap-2">
                 <User className="w-5 h-5 text-primary" />
@@ -156,10 +161,10 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
               </h2>
               <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
                 <div className="w-16 h-16 rounded-full overflow-hidden shrink-0 border border-neutral bg-neutral/10 flex items-center justify-center">
-                  {course.instructorAvatar ? (
+                  {course.instructorInfo?.avatarUrl ? (
                     <img 
-                      src={course.instructorAvatar} 
-                      alt={course.instructor} 
+                      src={course.instructorInfo.avatarUrl} 
+                      alt={course.instructorInfo.name || course.instructor} 
                       className="w-full h-full object-cover"
                     />
                   ) : (
@@ -168,13 +173,13 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
                 </div>
                 <div className="text-center sm:text-left space-y-1">
                   <h3 className="font-semibold text-secondary text-lg">
-                    {course.instructor || "ไม่พบข้อมูล"}
+                    {course.instructorInfo?.name || course.instructor || "ไม่พบข้อมูล"}
                   </h3>
                   <p className="text-xs text-description-light font-medium">
-                    {course.instructorTitle || "ไม่พบข้อมูล"}
+                    {course.instructorInfo?.title || "ครูผู้เชี่ยวชาญการจัดการเรียนรู้ประจำกลุ่มสาระ"}
                   </p>
                   <p className="text-sm text-secondary/80 font-sans leading-relaxed mt-2">
-                    {course.instructorBio || "ไม่พบข้อมูล"}
+                    {course.instructorInfo?.bio || "มีประสบการณ์ในการถ่ายทอดและพัฒนาศักยภาพผู้เรียนมากกว่า 10 ปี เน้นการสอนให้ผู้เรียนเห็นภาพ ปูรากฐานแน่น และแก้โจทย์ปัญหาได้อย่างสร้างสรรค์"}
                   </p>
                 </div>
               </div>
@@ -250,19 +255,16 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
                 {isFull ? "คอร์สเรียนปิดรับสมัครแล้ว" : "ลงทะเบียนเข้าสู่ระบบ"}
               </Button>
 
-              {/* Course Key parameters details list */} {/* NEED API */}
+              {/* Course Key parameters details list */}
               <div className="space-y-3.5 text-sm pt-2">
-                {/* NEED API */}
                 <div className="flex items-center gap-3">
                   <Clock className="w-4 h-4 text-description-light shrink-0" />
-                  <span className="text-secondary/70">ระยะเวลา: <strong className="text-secondary font-semibold">{course.duration || "12 ชั่วโมงการเรียนรู้"}</strong></span>
+                  <span className="text-secondary/70">ระยะเวลา: <strong className="text-secondary font-semibold">{course.details?.duration || "12 ชั่วโมงการเรียนรู้"}</strong></span>
                 </div>
-                {/* NEED API */} 
                 <div className="flex items-center gap-3">
                   <User className="w-4 h-4 text-description-light shrink-0" />
-                  <span className="text-secondary/70">ผู้บรรยายหลัก: <strong className="text-secondary font-semibold">{course.instructor || "ไม่พบข้อมูล"}</strong></span>
+                  <span className="text-secondary/70">ผู้บรรยายหลัก: <strong className="text-secondary font-semibold">{course.instructorInfo?.name || course.instructor || "ไม่พบข้อมูล"}</strong></span>
                 </div>
-                {/* NEED API */}
                 <div className="flex items-center gap-3">
                   <BookOpen className="w-4 h-4 text-description-light shrink-0" />
                   <span className="text-secondary/70">สิทธิ์ผู้เข้าเรียน: <strong className="text-secondary font-semibold">{course.gradeLevel ? `ระดับ ${course.gradeLevel}` : "ทุกคน"}</strong></span>
