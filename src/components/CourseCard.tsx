@@ -103,12 +103,12 @@ export default function CourseCard({
   const hasHeight = className.split(" ").some(c => c.startsWith("h-") || c.startsWith("max-h-") || c.startsWith("min-h-"));
 
   const widthStyle = hasWidth ? "" : "w-[352px]";
-  const heightStyle = hasHeight ? "" : "h-[440px]";
+  const heightStyle = hasHeight ? "" : "h-[390px]";
 
   return (
-    <Link href={`/courses/${id}`} className={`${widthStyle} ${heightStyle} shrink-0 bg-white rounded-[20px] border border-neutral/40 shadow-xs p-6 flex flex-col font-sans cursor-pointer hover:border-primary focus-within:ring-2 hover:ring-primary/10 transition-all duration-200 hover:scale-101 active:scale-102 ${className}`}>
+    <Link href={`/courses/${id}`} className={`${widthStyle} ${heightStyle} shrink-0 bg-white rounded-[20px] border border-neutral/40 shadow-xs p-5 flex flex-col font-sans cursor-pointer hover:border-primary focus-within:ring-2 hover:ring-primary/10 transition-all duration-200 hover:scale-101 active:scale-102 ${className}`}>
       
-      <div className="w-full h-[200px] shrink-0 overflow-hidden rounded-[16px] mb-6 bg-neutral/20">
+      <div className="w-full h-[180px] shrink-0 overflow-hidden rounded-[16px] mb-4 bg-neutral/20">
         <img
           src={imageUrl}
           alt={title}
@@ -116,63 +116,73 @@ export default function CourseCard({
         />
       </div>
 
-      <div className="flex flex-col gap-6 flex-grow">
+      <div className="flex flex-col gap-4 flex-grow">
         {/* Title */}
         <h3 className="text-xl font-semibold text-secondary leading-snug line-clamp-2">
           {title}
         </h3>
         
-        {/* Badges Row */}
-        <div className="flex items-center gap-2 flex-wrap">
-          {/* Main Code Badge (Red) */}
-          <span className="inline-flex items-center px-3 py-1 rounded-[6px] bg-primary text-white text-[13px] font-medium select-none">
-            {code}
-          </span>
-
-          {/* Optional Grade Level Badge (Red, e.g. ม.1, ม.2, ม.3) */}
-          {gradeLevel && (
-            <Badge
+        {/* Badges and Metadata Row */}
+        <div className="flex items-center justify-between gap-2 mt-auto mb-4">
+          <div className="flex items-center gap-1.5 flex-wrap flex-grow">
+            {/* Main Code Badge (Red) */}
+            <Badge 
               variant="fill"
               color="primary"
               shape="square"
               size="small"
-              className="font-medium px-4 py-1.5 bg-primary text-white"
+              className="font-medium px-3.5 py-1.5 bg-primary text-white"
             >
-              {gradeLevel}
+              {code}
             </Badge>
-          )}
 
-          {/* Optional Benefit Badge (Yellow) */}
-          {benefit && (
-            <Badge
-              variant="fill"
-              color="benefit"
-              shape="square"
-              size="small"
-              className="font-medium px-4 py-1.5 bg-benefit text-white"
-            >
-              {renderBenefitIcon()}
-              {benefit}
-            </Badge>
-          )}
+            {/* Optional Grade Level Badge (Red, e.g. ม.1, ม.2, ม.3) */}
+            {gradeLevel && (
+              <Badge
+                variant="fill"
+                color="primary"
+                shape="square"
+                size="small"
+                className="font-medium px-3.5 py-1.5 bg-primary text-white line-clamp-1"
+              >
+                {gradeLevel}
+              </Badge>
+            )}
 
-          {/* Rating or Instructor on the Right */}
-          {rating !== undefined ? (
-            <div className="ml-auto flex items-center gap-1 text-sm font-semibold text-secondary">
-              <Star className="w-4 h-4 text-secondary fill-secondary shrink-0" />
-              <span>{rating}</span>
-              {reviewCount !== undefined && <span className="text-secondary/70 font-normal">({reviewCount})</span>}
-            </div>
-          ) : instructor ? (
-            <span className="ml-auto text-sm text-description-light font-normal truncate max-w-[90px]">
-              {instructor}
-            </span>
-          ) : null}
+            {/* Optional Benefit Badge (Yellow) */}
+            {benefit && (
+              <Badge
+                variant="fill"
+                color="benefit"
+                shape="square"
+                size="small"
+                className="font-medium px-3.5 py-1.5 bg-benefit text-white"
+              >
+                {renderBenefitIcon()}
+                {benefit}
+              </Badge>
+            )}
+          </div>
+
+          {/* Right Column: Instructor or Rating (Fixed width, never squished) */}
+          <div className="shrink-0 flex items-center justify-end">
+            {rating !== undefined ? (
+              <div className="flex items-center gap-1 text-sm font-semibold text-secondary">
+                <Star className="w-4 h-4 text-secondary fill-secondary shrink-0" />
+                <span>{rating}</span>
+                {reviewCount !== undefined && <span className="text-secondary/70 font-normal">({reviewCount})</span>}
+              </div>
+            ) : instructor ? (
+              <span className="text-sm text-description-light font-normal truncate max-w-[100px]" title={instructor}>
+                {instructor}
+              </span>
+            ) : null}
+          </div>
         </div>
       </div>
 
       {/* 3. Bottom-Aligned Footer Section (Push to bottom using mt-auto) */}
-      <div className="flex items-center justify-between text-sm font-medium mt-auto pt-6 border-t border-neutral/30">
+      <div className="flex items-center justify-between text-sm font-medium mt-auto pt-4 border-t border-neutral/30">
         {/* Date Info */}
         <div className="flex items-center gap-1.5 text-description-light">
           <Clock className="w-4 h-4 text-description-light shrink-0" />
