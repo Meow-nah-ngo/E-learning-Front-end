@@ -31,14 +31,14 @@ export default function Hero() {
   return (
     <section className="relative w-full min-h-[400px] sm:min-h-[480px] lg:min-h-[520px] -mt-20 overflow-hidden font-sans bg-black">
       {/* Background Slides Container */}
-      <div className="absolute inset-0 w-full h-full">
+      <div className="absolute inset-0 w-full h-full z-0">
         {IMAGES.map((image, idx) => {
           const isActive = idx === currentSlide;
           return (
             <div
               key={idx}
               className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
-                isActive ? "opacity-100 z-0" : "opacity-0 -z-10"
+                isActive ? "opacity-100" : "opacity-0"
               }`}
             >
               {/* Background Image with Ken Burns zoom effect */}
@@ -58,25 +58,25 @@ export default function Hero() {
       </div>
 
       {/* Static Content Container (Z-Index 10 to sit on top of background slides) */}
-      <div className="relative z-10 w-full min-h-[400px] sm:min-h-[480px] lg:min-h-[520px] flex items-center justify-center pt-28 sm:pt-36 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-4xl mx-auto text-center flex flex-col items-center gap-6 sm:gap-8">
+      <div className="relative z-10 w-full min-h-[400px] sm:min-h-[480px] lg:min-h-[520px] flex items-center justify-center pt-28 sm:pt-36 pb-16 px-4">
+        <div className="w-full max-w-[1024px] mx-auto text-center">
           {/* Top Pill Badge */}
-          <div className="inline-flex items-center px-4 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-xs sm:text-sm font-semibold tracking-wider uppercase select-none">
+          <div className="inline-block mb-6 px-4 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-xs sm:text-sm font-semibold tracking-wider uppercase select-none">
             New Courses Available
           </div>
 
-          {/* Heading & Subtitle */}
-          <div className="space-y-3 sm:space-y-4">
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight drop-shadow-md">
-              Empower Your Learning Journey with Satriwit3 E-Learning
-            </h1>
-            <p className="text-base sm:text-xl text-white/80 font-normal tracking-wide max-w-xl mx-auto">
-              Discover a world of knowledge at your fingertips. Explore our diverse range of courses and enhance your skills anytime, anywhere.
-            </p>
-          </div>
+          {/* Heading */}
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight drop-shadow-md mb-4 max-w-[900px] mx-auto">
+            Empower Your Learning Journey with Satriwit3 E-Learning
+          </h1>
+
+          {/* Subtitle Paragraph */}
+          <p className="text-base sm:text-xl text-white/80 font-normal tracking-wide max-w-[720px] mx-auto mb-8 leading-relaxed">
+            Discover a world of knowledge at your fingertips. Explore our diverse range of courses and enhance your skills anytime, anywhere.
+          </p>
 
           {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto pt-2">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-[400px] sm:max-w-none mx-auto">
             <button className="cursor-pointer w-full sm:w-auto px-8 py-3.5 rounded-full bg-primary hover:bg-primary-tint text-white text-base font-bold shadow-lg flex items-center justify-center gap-2 transition-all duration-200 hover:scale-105 active:scale-95">
               Get Started
             </button>
@@ -108,21 +108,18 @@ export default function Hero() {
 
       {/* Bottom Radio Indicators (Dots) */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-3">
-        {IMAGES.map((_, idx) => {
-          const isActive = idx === currentSlide;
-          return (
-            <button
-              key={idx}
-              onClick={() => setCurrentSlide(idx)}
-              className={`cursor-pointer h-2.5 rounded-full transition-all duration-300 ${
-                isActive 
-                  ? "w-8 bg-primary" 
-                  : "w-2.5 bg-white/40 hover:bg-white/70"
-              }`}
-              aria-label={`Go to slide ${idx + 1}`}
-            />
-          );
-        })}
+        {IMAGES.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => setCurrentSlide(idx)}
+            className={`cursor-pointer h-2.5 rounded-full transition-all duration-300 ${
+              idx === currentSlide 
+                ? "w-8 bg-primary" 
+                : "w-2.5 bg-white/40 hover:bg-white/70"
+            }`}
+            aria-label={`Go to slide ${idx + 1}`}
+          />
+        ))}
       </div>
     </section>
   );
