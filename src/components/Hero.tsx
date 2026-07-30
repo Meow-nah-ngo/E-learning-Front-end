@@ -77,11 +77,11 @@ export default function Hero() {
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-[400px] sm:max-w-none mx-auto">
-            <button className="cursor-pointer w-full sm:w-auto px-8 py-3.5 rounded-full bg-primary hover:bg-primary-tint text-white text-base font-bold shadow-lg flex items-center justify-center gap-2 transition-all duration-200 hover:scale-105 active:scale-95">
+            <button className="whitespace-nowrap cursor-pointer w-full sm:w-auto px-8 py-3.5 rounded-full bg-primary hover:bg-primary-tint text-white text-base font-bold shadow-lg flex items-center justify-center gap-2 transition-all duration-200 hover:scale-105 active:scale-95">
               Get Started
             </button>
 
-            <button className="cursor-pointer w-full sm:w-auto px-8 py-3.5 rounded-full bg-white border border-neutral/60 hover:border-secondary text-secondary text-base font-bold shadow-lg flex items-center justify-center gap-2 transition-all duration-200 hover:scale-105 active:scale-95">
+            <button className="whitespace-nowrap cursor-pointer w-full sm:w-auto px-8 py-3.5 rounded-full bg-white border border-neutral/60 hover:border-secondary text-secondary text-base font-bold shadow-lg flex items-center justify-center gap-2 transition-all duration-200 hover:scale-105 active:scale-95">
               <span>Learn More</span>
               <ArrowRight className="w-5 h-5 text-secondary" />
             </button>
